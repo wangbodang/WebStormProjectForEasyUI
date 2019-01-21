@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript data function</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+
+</head>
+<body>
+    <h3>JavaScript 关于日期的函数</h3>
+    <hr/>
+    <table>
+        <tr>
+            <td>获取当天日期</td>
+            <td><a class="easyui-linkbutton" onclick="fillToday();">Click Me</a></td>
+            <td><input id="today" class="easyui-textbox"></td>
+        </tr>
+        <tr>
+            <td>获取月初第一天</td>
+            <td><a class="easyui-linkbutton" onclick="fillMonthFirstDay();">Click Me</a></td>
+            <td><input id="monthFirstDay" class="easyui-textbox"></td>
+        </tr>
+        <tr>
+            <td>获取月末的那一天</td>
+            <td><a class="easyui-linkbutton" onclick="fillMonthLastDay();">Click Me</a></td>
+            <td><input id="monthLastDay" class="easyui-textbox"></td>
+        </tr>
+    </table>
+    <script>
+        function fillToday() {
+            $("#today").textbox('setValue', formatDate(new Date()));
+        }
+        function fillMonthFirstDay() {
+            $("#monthFirstDay").textbox('setValue', formatDate(getCurrentMonthFirst()));
+        }
+        function fillMonthLastDay() {
+            $("#monthLastDay").textbox('setValue', formatDate(getCurrentMonthLast()));
+        }
+        // 格式化日期，为yyyy年MM月dd日格式
+        function formatDate(nowDate) {
+            var year = nowDate.getFullYear();
+            var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+            var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+            var dateStr = year + "年" + month + "月" + day + "日";
+            return dateStr;
+        }
+        // 获取月初第一天
+        function getCurrentMonthFirst(){
+            var date=new Date();
+            date.setDate(1);
+            return date;
+        }
+        // 获取当前月的最后一天
+        function getCurrentMonthLast(){
+            var date=new Date();
+            var currentMonth=date.getMonth();
+            var nextMonth=++currentMonth;
+            var nextMonthFirstDay=new Date(date.getFullYear(),nextMonth,1);
+            var oneDay=1000*60*60*24;
+            return new Date(nextMonthFirstDay-oneDay);
+        }
+        //获取当期税款所属期 格式为 YYYYMM/201805
+        function getCurTaxPeriod()
+        {
+            var now = new Date();
+            var year = now.getFullYear();       //年
+            var month = now.getMonth() + 1;     //月
+            var period = year+'';
+            if(month < 10)
+                period += "0";
+            period += month;
+            return (period);
+        }
+    </script>
+
+</body>
+</html>

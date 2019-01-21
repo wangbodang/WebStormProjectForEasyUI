@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>营改增税负分析测算明细表</title>
+    <style>
+        body{
+            font-family:"SimSun";
+            font-size:12px;
+        }
+        table{
+            border: 1px solid black;
+            border-collapse:collapse;
+            font-size: 14px;
+        }
+        td{
+            border: 1px solid black;
+            padding :8px;
+            text-align:right;
+           /* //width: 100px;*/
+            height:16px;
+        }
+        td[class=nostyle]{
+            border: 0;
+            text-align: left;
+        }
+
+        .bluebgcolor{
+            background-color:rgb(200,216,250);
+        }
+        .whitebgcolor{
+            background-color: white;
+        }
+        .graybgcolor{
+            background-color:rgb(192,192,192);
+        }
+        .txtCenter{
+            text-align:center;
+        }
+        .txtLeft{
+            text-align:left;
+        }
+        .txtRight{
+            text-align:right;
+        }
+        .txtBlueColor{
+            color:blue;
+        }
+        .nostyle{
+            -webkit-appearance:none;
+            -moz-appearance: none;
+            width:90px;
+            height:14px;
+            font-size:12px;
+            border-radius:0;
+            border:0 solid #c8cccf;
+            color:black;
+            margin:0;
+            outline:0;
+        }
+        .selectNoStyle{
+            position: relative;
+            background-color: transparent;
+            TOP:   0px;
+            left: 0px;
+            border-width: 1px;
+            border-top-style: none;
+            border-right-style: none;
+            border-left-style: none;
+            border-bottom-style: none;
+            display:block;
+            height: 24px;
+            overflow:hidden;
+            width: 180px;
+        }
+    </style>
+    <script type="text/javascript" src="../../_jquery/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#fxcsmx_tbl').on('dblclick','.beinput',function(){
+                //console.info($(this).text());
+                var oldVal = $(this).text();
+                var input = "<input type='text' class='nostyle' id='tmpId' value='" + oldVal + "' >";
+                $(this).text('');
+                $(this).append(input);
+                $('#tmpId').focus();
+                $('#tmpId').blur(function(){
+                    if($(this).val() != ''){
+                        oldVal = $(this).val();
+                    }
+                    //closest：是从当前元素开始，沿Dom树向上遍历直到找到已应用选择器的一个匹配为止。
+                    $(this).closest('td').text(oldVal);
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div style="width:2000px;">
+        <p style="font-size: 32px;text-align: center;">营改增税负分析测算明细表</p>
+        <p style="font-size: 18px;text-align: center;color:red;">温馨提醒：填表说明内包含申报注意事项，可用于填表参考！</p>
+            <table width="100%" id="fxcsmx_tbl">
+                <!-- 10行19列 -->
+                <!-- 1行 -->
+                <tr class="bluebgcolor txtCenter">
+                    <td rowspan="2" class="txtCenter" width="4%">操作</td>
+                    <td rowspan="4" class="txtCenter" width="4%">序号</td>
+                    <td rowspan="2" colspan="3" class="txtCenter" width="22%">项目及栏次</td>
+                    <td colspan="7" class="txtCenter" width="35%">增值税</td>
+                    <td colspan="7" class="txtCenter" width="35%">营业税</td>
+
+                </tr>
+                <!-- 2行 -->
+                <tr class="bluebgcolor txtCenter">
+                    <td rowspan="2" width="180px" class="txtCenter">不含税销售额</td>
+                    <td rowspan="2" width="180px" class="txtCenter">销项(应纳)税额</td>
+                    <td rowspan="2" width="180px" class="txtCenter">价税合计</td>
+                    <td rowspan="2" width="180px" class="txtCenter">服务、不动产和无形资产扣除项目本期实际扣除金额</td>
+                    <td colspan="2" class="txtCenter">扣除后</td>
+                    <td rowspan="2" class="txtCenter">增值税应纳税额（测算）</td>
+                    <td colspan="5"  class="txtCenter">原营业税税制下服务、不动产和无形资产差额扣除项目</td>
+                    <td rowspan="2" class="txtCenter">应税营业额</td>
+                    <td rowspan="2" class="txtCenter">营业税应纳税额</td>
+                </tr>
+                <!-- 3行 -->
+                <tr class="bluebgcolor txtCenter">
+                    <td style="padding: 0px;" class="txtCenter" height="50px">
+                        <!-- 增加按钮 -->
+                        <input type="button" value="增加" style="width:50px;height:50px;"/>
+                    </td>
+                    <td rowspan="2" class="txtCenter" width="10%">应税项目代码及名称</td>
+                    <td rowspan="2" class="txtCenter" width="6%">增值税税率或征收率</td>
+                    <td rowspan="2" class="txtCenter" width="6%">营业税税率</td>
+                    <td class="txtCenter">含税销售额</td>
+                    <td class="txtCenter">销项(应纳)税额</td>
+                    <td class="txtCenter">期初余额</td>
+                    <td class="txtCenter">本期发生额</td>
+                    <td class="txtCenter">本期应扣除金额</td>
+                    <td class="txtCenter">本期实际扣除金额</td>
+                    <td class="txtCenter">期末余额</td>
+                </tr>
+                <!-- 4行 -->
+                <tr class="bluebgcolor txtCenter">
+                    <td style="padding: 0px;" class="txtCenter" height="50px">
+                        <!-- 删除按钮 -->
+                        <input type="button" class="" value="删除" style="width:50px;height:50px;"/>
+                    </td>
+                    <!--<td></td>-->
+                    <!--<td></td>
+                    <td></td>
+                    <td></td>-->
+                    <td class="txtCenter">1</td>
+                    <td class="txtCenter">2=1×增值税税率或征收率</td>
+                    <td class="txtCenter">3=1+2</td>
+                    <td class="txtCenter">4</td>
+                    <td class="txtCenter">5=3-4</td>
+                    <td class="txtCenter">6=5÷(100%+增值税税率或征收率)×增值税税率或征收率</td>
+                    <td class="txtCenter">7</td>
+                    <td class="txtCenter">8</td>
+                    <td class="txtCenter">9</td>
+                    <td class="txtCenter">10=8+9</td>
+                    <td class="txtCenter">11（11≤3且11≤10）</td>
+                    <td class="txtCenter">12=10-11</td>
+                    <td class="txtCenter">13=3-11</td>
+                    <td class="txtCenter">14=13×营业税税率</td>
+                </tr>
+                <!-- 5行 1 -->
+                <tr>
+                    <td class="txtLeft">
+                        <input type="checkbox" style="width:15px;height: 15px;">
+                    </td>
+                    <td class="txtCenter">1</td>
+                    <td class="txtRight">
+                        <select class="selectNoStyle">
+                            <option></option>
+                            <option value="010300">010300-水路运输服务</option>
+                            <option></option>
+                        </select>
+                    </td>
+                    <td class="txtRight beinput">0.17</td>
+                    <td class="txtRight beinput">0.05</td>
+                    <td class="txtRight beinput">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                </tr>
+                <!-- 6行 2 -->
+                <tr>
+                    <td class="txtLeft">
+                        <input type="checkbox" style="width:15px;height: 15px;">
+                    </td>
+                    <td class="txtCenter">2</td>
+                    <td class="txtRight">
+                        <select class="selectNoStyle">
+                            <option></option>
+                            <option value="010300">010300-水路运输服务</option>
+                            <option></option>
+                        </select>
+                    </td>
+                    <td class="txtRight beinput">0.17</td>
+                    <td class="txtRight beinput">0.03</td>
+                    <td class="txtRight beinput">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                </tr>
+                <!-- 7行 3 -->
+                <tr>
+                    <td class="txtLeft">
+                        <input type="checkbox" style="width:15px;height: 15px;">
+                    </td>
+                    <td class="txtCenter">3</td>
+                    <td class="txtRight">
+                        <select class="selectNoStyle">
+                            <option></option>
+                            <option value="010300">010300-水路运输服务</option>
+                            <option></option>
+                        </select>
+                    </td>
+                    <td class="txtRight beinput">0.06</td>
+                    <td class="txtRight beinput">0.05</td>
+                    <td class="txtRight beinput">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                </tr>
+                <!-- 8行 4 -->
+                <tr>
+                    <td class="txtLeft">
+                        <input type="checkbox" style="width:15px;height: 15px;">
+                    </td>
+                    <td class="txtCenter">4</td>
+                    <td class="txtRight">
+                        <select class="selectNoStyle">
+                            <option></option>
+                            <option value="010300">010300-水路运输服务</option>
+                            <option></option>
+                        </select>
+                    </td>
+                    <td class="txtRight beinput">0.05</td>
+                    <td class="txtRight beinput">0.05</td>
+                    <td class="txtRight beinput">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                </tr>
+                <!-- 9行 5 -->
+                <tr>
+                    <td class="txtLeft">
+                        <input type="checkbox" style="width:15px;height: 15px;">
+                    </td>
+                    <td class="txtCenter">5</td>
+                    <td class="txtRight">
+                        <select class="selectNoStyle">
+                            <option></option>
+                            <option value="010300">010300-水路运输服务</option>
+                            <option></option>
+                        </select>
+                    </td>
+                    <td class="txtRight beinput">0.03</td>
+                    <td class="txtRight beinput">0.03</td>
+                    <td class="txtRight beinput">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight beinput" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                    <td class="txtRight graybgcolor" width="5%">0.00</td>
+                </tr>
+                <!-- 10行 合计行-->
+                <tr class="graybgcolor">
+                    <td class="txtCenter">合计</td>
+                    <td></td>
+                    <td class="txtCenter">---</td>
+                    <td class="txtCenter">---</td>
+                    <td class="txtCenter">---</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <!--<tr>
+                    <td>操作</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>-->
+            </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Link Button</title>
+    <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
+    <style>
+        .monthLink{
+            margin-left:10px;margin-right: 10px;
+            cursor: pointer;
+        }
+        .txtRed{
+            color:red;
+        }
+    </style>
+    <script>
+        $(function () {
+            console.log('页面加载');
+
+            //为当前月着色
+            renderCurMonth();
+
+            var year = new Date().getFullYear();
+
+            //为链接绑定事件
+            $("#div1 span[id*='month']").on('click', function (event) {
+                removeTxtRed();
+                var target = event.currentTarget;
+                //console.log(target);
+                $(target).addClass('txtRed');
+                var idVal = $(target).prop('id');
+                var monthVal = idVal.substr(5);
+                ajaxFunction(year+""+monthVal);
+            });
+        })
+        //为当前月着色
+        function renderCurMonth() {
+            var date = new Date();
+            var month = date.getMonth()+1;
+            //console.log("当前月为:"+month);
+            var month2 = (month<10)?('0'+month):(month);
+            $("#month"+month2).addClass('txtRed');
+        }
+        //移除链接的红色样式
+        function removeTxtRed() {
+            var spans = $("#div1 span");
+            //console.log('span个数为:'+spans.length);
+            $.each(spans, function (index, item) {
+                if($(item).hasClass('txtRed')){
+                    $(item).removeClass('txtRed');
+                }
+            })
+        }
+        //请求方法
+        function ajaxFunction(month) {
+            console.log("请求发送,所属期:"+month);
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1" style="width:900px;">
+        <span id="preYear"><<</span>
+        <span class="monthLink" id="month01">[1]</span>
+        <span class="monthLink" id="month02">[2]</span>
+        <span class="monthLink" id="month03">[3]</span>
+        <span class="monthLink" id="month04">[4]</span>
+        <span class="monthLink" id="month05">[5]</span>
+        <span class="monthLink" id="month06">[6]</span>
+        <span class="monthLink" id="month07">[7]</span>
+        <span class="monthLink" id="month08">[8]</span>
+        <span class="monthLink" id="month09">[9]</span>
+        <span class="monthLink" id="month10">[10]</span>
+        <span class="monthLink" id="month11">[11]</span>
+        <span class="monthLink" id="month12">[12]</span>
+        <span id="nextYear">>></span>
+    </div>
+</body>
+</html>

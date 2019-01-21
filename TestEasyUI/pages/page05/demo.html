@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-family:"SimSun";
+            font-size:12px;
+        }
+        table{
+            border: 1px solid black;
+            border-collapse:collapse;
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+            word-break: break-all;
+            word-wrap: break-word;
+
+        }
+        td{
+            border: 1px solid black;
+            padding :8px;
+            text-align:right;
+            width: 100px;
+            height:16px;
+            word-break:keep-all;/* 不换行 */
+            white-space:nowrap;/* 不换行 */
+            overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+            text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</td>
+            <td style="text-align: left;">XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+        </tr>
+        <tr>
+            <td>XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+            <td>XXXXXXXXX</td>
+        </tr>
+        <tr>
+            <td>XXXXXXXXX</td>
+<td>XXXXXXXXX</td>
+<td>XXXXXXXXX</td>
+<td>XXXXXXXXX</td>
+<td>XXXXXXXXX</td>
+</tr>
+</table>
+<span style="font-size: 36px;"> TTTTT</span>
+</body>
+</html>

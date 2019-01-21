@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../_css/global.css">
+    <script type="text/javascript" src="../_js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        function testInArray(){
+            var a1 = "111"*1;
+            var arr = [a1, "222", "333"];
+            var value = 111;
+            var i = $.inArray(value, arr);
+            alert(i);
+        }
+        function testEquals(){
+            var v1 = 123;
+            var v2 = "123";
+            var v3 = "123abc";
+            alert(v1===parseInt(v3));
+        }
+    </script>
+</head>
+<body>
+    <button class="mydefault" onclick="testInArray();">click me1</button>
+    <button class="mydefault" onclick="testEquals();">测试 = == === </button>
+
+</body>
+</html>

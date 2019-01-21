@@ -1,0 +1,13 @@
+table{
+	border:1px solid gray;
+	margin:10px;
+	border-collapse: collapse;
+}
+td{
+	border:1px solid gray;
+	padding:8px;
+}
+td[class=alignright]{
+	text-align: right;
+	color:#000080; 
+}

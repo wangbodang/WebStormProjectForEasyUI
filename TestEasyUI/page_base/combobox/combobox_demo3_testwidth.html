@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Datagrid</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+    <style>
+        table{
+            border-collapse: collapse;
+            border:1px solid #2aabd2;
+        }
+        td{
+            border:1px solid #2aabd2;
+        }
+        .leftTd{
+            width:180px;
+            text-align: right;
+            padding-right:4px;
+        }
+        .rightTd{
+            width:280px;
+            text-align: left;
+            padding-left:8px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin:50px auto; width:45%;">
+        <p>Test ComboBox</p>
+        <form id="searchForm">
+            <table>
+                <tr>
+                    <td class="leftTd">
+                        <span>特殊发票类型 : </span>
+                    </td>
+                    <td class="rightTd">
+                        <!-- readonly disabled editable -->
+                        <!-- editable:false, -->
+                        <input id="myCombobox" class="easyui-combobox"
+                               name="myComboboxName"
+
+                               style="width:200px; height:auto;"
+                               data-options="panelWidth:200, panelHeight:'auto',
+                                             readonly:true,
+                                             disabled:true,
+                                             valueField:'v', textField:'t'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxEditable(0);">setEditableFasle</a>
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxEditable(1);">setEditableTrue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxReadonly(0);">setReadOnlyFalse</a>
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxReadonly(1);">setReadOnlyTrue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxDisabled(0);">setDisabledFalse</a>
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxDisabled(1);">setDisabledTrue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setCboxValue();">SetValue</a><br/>
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="getCboxValue();">GetValue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="reloadThisPage();">Refresh</a>
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="getSearchFormValue();">getSearchFormValue</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+    <script>
+        function setCboxEditable(flag){
+            if(flag){
+                $("#myCombobox").combobox({editable:true});
+            }else{
+                $("#myCombobox").combobox({editable:false});
+            }
+
+        }
+        function setCboxReadonly(flag){
+            if(flag){
+                $("#myCombobox").combobox({readonly:true});
+            }else{
+                $("#myCombobox").combobox({readonly:false});
+            }
+        }
+        function setCboxDisabled(flag){
+            if(flag){
+                $("#myCombobox").combobox({disabled:true});
+            }else{
+                $("#myCombobox").combobox({disabled:false});
+            }
+        }
+        function getSearchFormValue(){
+            var paramStr = $("#searchForm").serialize();
+            console.log("---> 查询参数为 : "+paramStr);
+        }
+
+
+        $(function () {
+            console.log("页面加载");
+            var cbData = [  {'v':'aa', 't':'TAAA'},
+                            {'v':'bb', 't':'TBBB', selected:true},
+                            {'v':'cc', 't':'TCCC'},
+                            {'v':'ss', 't':'TSSS'}]
+            $("#myCombobox").combobox('loadData', cbData);
+        });
+        function setCboxValue() {
+            //$("#myCombobox").combobox('setValue', 'XXX');
+            /*$("#myCombobox").combobox('setValue', 'XXX');
+            $("#myCombobox").combobox('setText', 'TEXT');*/
+
+            $("#myCombobox").textbox('setValue', 'XXX');
+            $("#myCombobox").textbox('setText', 'TEXT');
+
+
+            //$("#myCombobox").combobox('setValue', 'ss');
+            //$("#myCombobox").combobox('select', 'ss');
+        }
+        function getCboxValue() {
+            var myCbValue = $("#myCombobox").combobox('getValue');
+            var myCbText = $("#myCombobox").combobox('getText');
+            console.log("值为:"+myCbValue+', 文本为:'+myCbText);
+        }
+        function reloadThisPage() {
+            window.location.reload();
+        }
+    </script>
+<!--   -->
+</body>
+</html>

@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>附表1</title>
+  <style type="text/css">
+    body{
+      font-family:"SimSun";
+      font-size:12px;
+    }
+    table{
+      border: 0px solid black;
+      border-collapse:collapse;
+
+    }
+    table td{
+      border:1px solid black;
+    }
+    table th{
+      border:1px solid black;
+    }
+    .table1 td{
+      border: 0px solid black;
+      border-collapse:collapse;
+      text-align: left;
+    }
+
+    td{
+      border: 1px solid black;
+      padding :8px;
+      text-align:center;
+    //width: 100px;
+      height:12px;
+      background-color:rgb(200,216,250);
+    }
+    th{
+      background-color:rgb(200,216,250);
+    }
+    .noTdBorder{
+      border:0;
+    }
+    .whitebgcolor{
+      background-color: white;
+    }
+    .greenbgcolor{
+      background-color:rgb(206,254,206);
+    }
+    .txtCenter{
+      text-align:center;
+    }
+    .txtLeft{
+      text-align:left;
+    }
+    .txtRight{
+      text-align:right;
+    }
+    .graybgcolor{
+      background-color:rgb(192,192,192);
+    }
+    .txtBlueColor{
+      color:blue;
+    }
+    input{
+      -webkit-appearance:none;
+      -moz-appearance: none;
+      width:90px;
+      height:14px;
+      font-size:12px;
+      border-radius:0;
+      border:0 solid #c8cccf;
+      color:black;
+      margin:0;
+      outline:0;
+    }
+
+    /*style='width:98px;height:20px;margin:0px;padding:0px;'*/
+  </style>
+  <script type="text/javascript" src="../_jquery/jquery-3.2.1.js"></script>
+  <script type="text/javascript">
+      $(function(){
+          $('#fb3table').on('dblclick','.beinput',function(){
+              //console.info($(this).text());
+              var oldVal = $(this).text();
+              var input = "<input type='text' id='tmpId' value='" + oldVal + "' >";
+              $(this).text('');
+              $(this).append(input);
+              $('#tmpId').focus();
+              $('#tmpId').blur(function(){
+                  if($(this).val() != ''){
+                      oldVal = $(this).val();
+                  }
+                  //closest：是从当前元素开始，沿Dom树向上遍历直到找到已应用选择器的一个匹配为止。
+                  $(this).closest('td').text(oldVal);
+              });
+          });
+      });
+  </script>
+</head>
+<body>
+<div style="width:1030px;">
+
+      <table style="width:1030px;" style="border:0;">
+          <tr>
+            <td colspan="7" class="whitebgcolor noTdBorder" >
+                <span style="text-align:center; font-size:26px;font-weight: bold;">增值税纳税申报表(一般纳税人适用)</span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="7" class="whitebgcolor noTdBorder" >
+              <span style="text-align:center; font-size:13px;">根据国家税收法律法规及增值税相关规定制定本表。纳税人不论有无销售额，均应按税务机关核定的纳税期限填写本表，并向当地税务机关申报。</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="3">
+              <span id="taxPeriod" style="text-align:left;font-size:15px;">税款所属期：</span>
+            </td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">填表日期：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">电话号码：</td>
+          </tr>
+          <tr>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="3">纳税人识别号：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">所属行业：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">法定代表人姓名：</td>
+          </tr>
+          <tr>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="3">纳税人名称：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">注册地址：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">生产经营地址：</td>
+          </tr>
+          <tr>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">开户银行：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">银行账号：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="2">登记注册类型：</td>
+            <td class="whitebgcolor txtLeft noTdBorder" align="center" colspan="1">金额单位：</td>
+          </tr>
+
+          <tr>
+            <th colspan="2" rowspan="2" scope="col" width="180px">项目</th>
+            <th rowspan="2" scope="col" width="100px">栏次</th>
+            <th colspan="2" scope="col">一般项目</th>
+            <th colspan="2" scope="col">即征即退项目</th>
+          </tr>
+          <tr>
+            <td align="center" width="140px">本月数</td>
+            <td align="center" width="140px">本年累计</td>
+            <td align="center" width="140px">本月数</td>
+            <td align="center" width="140px">本年累计</td>
+          </tr>
+          <tr>
+            <th rowspan="10" scope="row" width="70px">销售额</th>
+            <td width="230px" class="txtLeft">(一)按适用税率计税销售额</td>
+            <td class="txtLeft">1</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">其中：应税货物销售额</td>
+            <td class="txtLeft">2</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft"> 应税劳务销售额</td>
+            <td class="txtLeft">3</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft"> 纳税检查调整的销售额</td>
+            <td class="txtLeft">4</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">(二)按简易办法计税销售额</td>
+            <td class="txtLeft">5</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">其中：纳税检查调整的销售额</td>
+            <td class="txtLeft">6</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">(三)免、抵、退办法出口销售额</td>
+            <td class="txtLeft">7</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">(四)免税销售额</td>
+            <td class="txtLeft">8</td>
+            <td>0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">其中：免税货物销售额</td>
+            <td class="txtLeft">9</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">免税劳务销售额</td>
+            <td class="txtLeft">10</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <th rowspan="14" scope="row">税款计算</th>
+            <td class="txtLeft">销项税额</td>
+            <td class="txtLeft">11</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">进项税额</td>
+            <td class="txtLeft">12</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">上期留抵税额</td>
+            <td class="txtLeft">13</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">进项税额转出</td>
+            <td class="txtLeft">14</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">免、抵、退应退税额</td>
+            <td class="txtLeft">15</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">按适用税率计算的纳税检查应补缴税额</td>
+            <td class="txtLeft">16</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">应抵扣税额合计</td>
+            <td class="txtLeft">17=12+13-14-15+16</td>
+            <td class="graybgcolor txtRight">4.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">实际抵扣税额</td>
+            <td class="txtLeft">18(如17<11,则为17,否则为11)</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">应纳税额</td>
+            <td class="txtLeft">19=11-18</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td> class="txtLeft"期末留抵税额</td>
+            <td class="txtLeft">20=17-18</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">简易计税办法计算的应纳税额</td>
+            <td class="txtLeft">21</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">按简易计税办法计算的纳税检查应补缴税额</td>
+            <td class="txtLeft">22</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">应纳税额减征额</td>
+            <td class="txtLeft">23</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">应纳税额合计</td>
+            <td class="txtLeft">24=19+21-23</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <th rowspan="14" scope="row">税款缴纳</th>
+            <td class="txtLeft">期初未缴税额(多缴为负数)</td>
+            <td class="txtLeft">25</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">实收出口开具专用缴款书退税额</td>
+            <td class="txtLeft">26</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">本期已缴税额</td>
+            <td class="txtLeft">27=28+29+30+31</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">①分次预缴税额</td>
+            <td class="txtLeft">28</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">②出口开具专用缴款书预缴税额</td>
+            <td class="txtLeft">29</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">③本期缴纳上期应纳税额</td>
+            <td class="txtLeft">30</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">④本期缴纳欠缴税额</td>
+            <td class="txtLeft">31</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">期末未缴税额(多缴为负数)</td>
+            <td class="txtLeft">32=24+25+26-27</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">其中：欠缴税额(≥0)</td>
+            <td class="txtLeft">33=25+26-27</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">本期应补(退)税额</td>
+            <td class="txtLeft">34＝24-28-29</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">即征即退实际退税额</td>
+            <td class="txtLeft">35</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">期初未缴查补税额</td>
+            <td class="txtLeft">36</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">本期入库查补税额</td>
+            <td class="txtLeft">37</td>
+            <td class="whitebgcolor txtRight">0.00</td>
+            <td class="greenbgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <td class="txtLeft">期末未缴查补税额</td>
+            <td class="txtLeft">38=16+22+36-37</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor txtRight">0.00</td>
+            <td class="graybgcolor">- -</td>
+            <td class="graybgcolor">- -</td>
+          </tr>
+          <tr>
+            <th scope="row" class="whitebgcolor">授权声明</th>
+            <td colspan="2" style="text-align: left;" class="whitebgcolor">&nbsp;如果你已委托代理人申报，请填写下列资料:为代理一切税务事宜，现授权<br/>(地址)为本纳税人的代理申报人，任何与本申报表有关的往来文件，都可寄予此人。<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;授权人签字：</td>
+            <td class="whitebgcolor">申报人声明</td>
+            <td colspan="3" style="text-align: left;" class="whitebgcolor">&nbsp;本纳税申报表是根据国家税收法律法规及相关规定填报的，我确定它是真实的、可靠的、完整的。<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;声明人签字：</td>
+          </tr>
+          <tr>
+            <td colspan="3" scope="row" class="whitebgcolor txtLeft noTdBorder" >主管税务机关：</td>
+            <td colspan="2" class="whitebgcolor txtLeft noTdBorder">接收人：</td>
+            <td colspan="2" class="whitebgcolor txtLeft noTdBorder">接收日期：</td>
+          </tr>
+      </table>
+</div>
+<script>
+    $(function () {
+    // ##页面加载，设置税款所属期
+    // ## taxPeriod 税款所属期：2018年01月01日 至 2019年01月31日
+        var taxPeriod = "税款所属期: "+formatDate(getCurrentMonthFirst())+" 至 "+formatDate(getCurrentMonthLast());
+        $("#taxPeriod").text(taxPeriod);
+    })
+
+    // ## 格式化日期，为yyyy年MM月dd日格式
+    function formatDate(nowDate) {
+        var year = nowDate.getFullYear();
+        var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+        var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        var dateStr = year + "年" + month + "月" + day + "日";
+        return dateStr;
+    }
+    // ##获取月初第一天
+    function getCurrentMonthFirst(){
+        var date=new Date();
+        date.setDate(1);
+        return date;
+    }
+    // ##获取当前月的最后一天
+    function getCurrentMonthLast(){
+        var date=new Date();
+        var currentMonth=date.getMonth();
+        var nextMonth=++currentMonth;
+        var nextMonthFirstDay=new Date(date.getFullYear(),nextMonth,1);
+        var oneDay=1000*60*60*24;
+        return new Date(nextMonthFirstDay-oneDay);
+    }
+
+</script>
+
+</body>
+</html>

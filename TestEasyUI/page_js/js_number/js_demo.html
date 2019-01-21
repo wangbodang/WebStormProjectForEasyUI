@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS NUMBER</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <script>
+
+
+    </script>
+
+</head>
+<body>
+    <div style="width: 35%;margin: 100px auto;">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="test()">Click Me</a>
+    </div>
+
+
+<script>
+    //初始化
+    $(function () {
+
+    })
+    //测试框
+    function test() {
+        //$.messager.alert('消息', '测试', 'info');
+        //var num = 0.0001515151;
+       /* var num = 134545.9815926;
+        console.log(num.toFixed(3));
+        console.log(num.toPrecision(3));
+        console.log(num.toExponential());
+        console.log(num.toLocaleString());
+
+        console.log('--->'+Number(num.toFixed(2).toString()).toExponential());*/
+        var numStr1 = '5.234e6';
+        var numStr2 = '9.1321E-1';
+        //console.log(numStr2.toLowerCase())
+        formatNumber(numStr1);
+    }
+    function formatNumber(numStr) {
+        console.log('--->原数为 : '+numStr);
+        numStr = numStr.trim().toLowerCase();
+        var index = numStr.indexOf('e');
+        console.log('--->e的位置 : '+index);
+        var baseNum = numStr.substring(0, index);
+        console.log('--->底数 : '+baseNum);
+        console.log('--->底数 : '+Number(baseNum));
+        var indexNum = numStr.substring(index+1);
+        console.log('--->指数 : '+indexNum);
+        if(indexNum>=0){
+            for(var n=0;n<indexNum;n++){
+                baseNum = baseNum*10;
+            }
+            console.log('--->结果:'+baseNum);
+        }else{
+            baseNum = baseNum.replace(".", '');
+            console.log('--->替换掉点号的底数:'+baseNum);
+            console.log('--->指数为负');
+            for(var n=0;n<Math.abs(indexNum)-1;n++){
+                baseNum = "0"+baseNum;
+            }
+            baseNum = "."+baseNum;
+            baseNum = "0"+baseNum;
+            console.log('--->结果:'+baseNum);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+</head>
+<body>
+
+<div class="easyui-panel" data-options="title:'测试连续认证所属期'">
+    <table>
+        <tr>
+            <td>
+                <!-- 格式化认证所属期为 yyyyMM by wangbodang 2018/06/01 -->
+                <input class="easyui-datebox" type="text" name="deductiblePeriodS" id="datebox_deductiblePeriodS" data-options="width:100" /> -
+                <input class="easyui-datebox" type="text" name="deductiblePeriodE" id="datebox_deductiblePeriodE" data-options="width:100"  />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="showDate();">ClickMe</a>
+                <input class="easyui-textbox" id="dateText"/>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+
+<script>
+    //
+    function showDate(){
+        var date1 = $("#datebox_deductiblePeriodS").textbox('getValue');
+        var date2 = $("#datebox_deductiblePeriodE").textbox('getValue');
+        console.log(date1);
+        console.log(date1);
+        if(date1=='' || date1==''){
+            $.messager.alert('msg', '没有选择');
+            return false;
+        }
+        $("#dateText").textbox('setValue', date1+' - '+date2);
+    }
+    $(function () {
+        //格式化认证所属期为 yyyyMM by wangbodang 2018/06/01
+        //认证所属期起
+        var p_1 = $('#datebox_deductiblePeriodS').datebox('panel');
+        var tds_1 = false;
+        var span_1 = p_1.find('span.calendar-text');
+        $('#datebox_deductiblePeriodS').datebox({
+            onShowPanel: function () {
+                span_1.trigger('click');
+                if (!tds_1)
+                    setTimeout(function() {
+                        tds_1 = p_1.find('div.calendar-menu-month-inner td');
+                        tds_1.click(function(e) {
+                            e.stopPropagation();
+                            var year = /\d{4}/.exec(span_1.html())[0] ,
+                                month = parseInt($(this).attr('abbr'), 10);
+                            $('#datebox_deductiblePeriodS').datebox('hidePanel').datebox('setValue', year  + month);
+                        });
+                    }, 0);
+            },
+            parser: function (s) {
+                if (!s) return new Date();
+                var date=new Date(parseInt(s.substring(0,4), 10), parseInt(s.substring(4), 10) - 1, 1);
+                return date;
+            },
+            formatter: function (d) {
+                var currentMonth = (d.getMonth()+1);
+                var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+                return d.getFullYear() + currentMonthStr;
+            }
+        });
+
+        //认证所属期止
+        var p_2 = $('#datebox_deductiblePeriodE').datebox('panel');
+        var tds_2 = false;
+        var span_2 = p_2.find('span.calendar-text');
+        $('#datebox_deductiblePeriodE').datebox({
+            onShowPanel: function () {
+                span_2.trigger('click');
+                if (!tds_2)
+                    setTimeout(function() {
+                        tds_2 = p_2.find('div.calendar-menu-month-inner td');
+                        tds_2.click(function(e) {
+                            e.stopPropagation();
+                            var year = /\d{4}/.exec(span_2.html())[0] ,
+                                month = parseInt($(this).attr('abbr'), 10);
+                            $('#datebox_deductiblePeriodE').datebox('hidePanel').datebox('setValue', year  + month);
+                        });
+                    }, 0);
+            },
+            parser: function (s) {
+                if (!s) return new Date();
+                var date=new Date(parseInt(s.substring(0,4), 10), parseInt(s.substring(4), 10) - 1, 1);
+                return date;
+            },
+            formatter: function (d) {
+                var currentMonth = (d.getMonth()+1);
+                var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+                return d.getFullYear() + currentMonthStr;
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

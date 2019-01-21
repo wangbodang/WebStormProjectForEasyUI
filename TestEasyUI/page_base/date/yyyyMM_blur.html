@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yyyyMM blur</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+请选择税款所属期
+<input class="easyui-datebox" editable="false"
+       type="text" name="taxPeriod"
+       id="taxPeriod"
+       data-options="width:100,required:true"/>
+<a id="search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search', iconAlign:'right', text:'查询'"></a>
+<br/>
+<span id="taxPeriodSpan"></span>
+</body>
+<script>
+
+    $(function () {
+        //为日期框绑定事件
+        //$("#taxPeriod").datebox({onChange:taxPeriodChange});
+        $("#search_btn").on("click", taxPeriodChange);
+
+        //这段代码是使日期框显示年月的。。。
+        var p = $('#taxPeriod').datebox('panel');
+        var tds = false;
+        var span = p.find('span.calendar-text');
+        $('#taxPeriod').datebox({
+            onShowPanel: function () {
+                span.trigger('click');
+                if (!tds)
+                    setTimeout(function() {
+                        tds = p.find('div.calendar-menu-month-inner td');
+                        tds.click(function(e) {
+                            e.stopPropagation();
+                            var year = /\d{4}/.exec(span.html())[0] ,
+                                month = parseInt($(this).attr('abbr'), 10);
+                            $('#taxPeriod').datebox('hidePanel').datebox('setValue', year  + month);
+                        });
+                    }, 0);
+            },
+            parser: function (s) {
+                if (!s) return new Date();
+                var date=new Date(parseInt(s.substring(0,4), 10), parseInt(s.substring(4), 10) - 1, 1);
+                return date;
+            },
+            formatter: function (d) {
+                var currentMonth = (d.getMonth()+1);
+                var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+                return d.getFullYear() + currentMonthStr;
+            }
+        });
+    });
+
+    //taxPeriodChange
+    function taxPeriodChange() {
+        var taxPeriod = $("#taxPeriod").datebox('getValue');
+        if(!taxPeriod){
+            $.messager.alert("消息", "请选择税款所属期", "info");
+            return;
+        }
+        console.log("所属期改变 -> "+taxPeriod);
+
+        fillTaxPeriodSpan(taxPeriod);
+    }
+    //填充span
+    function fillTaxPeriodSpan(taxPeriod) {
+        //填充表头税款所属期
+        var tYear = taxPeriod.substr(0, 4);
+        var tMonth = taxPeriod.substr(4);
+        console.log("年 : " + tYear + ", 月 : " + tMonth);
+
+        var periodFirstDay = getFirstDayOfPeriod(tYear, tMonth); //获取月初第一天格式字符串
+        var periodLastDay = getLastDayOfPeriod(tYear, tMonth);  //获取月末最后一天格式字符串
+
+        $("#taxPeriodSpan").text("税款所属期 : "+periodFirstDay+" 至 "+periodLastDay);
+    }
+    ////获取月初第一天
+    function getFirstDayOfPeriod(tYear, tMonth) {
+        var tDate = new Date(tYear, tMonth-1);
+        tDate.setDate(1);
+        return formatDate(tDate);
+    }
+    //获取月末最后一天
+    function getLastDayOfPeriod(tYear, tMonth) {
+        var nextMonthFirstDay=new Date(tYear, tMonth,1);
+        var oneDay=1000*60*60*24;
+        return formatDate(new Date(nextMonthFirstDay-oneDay));
+    }
+    //格式化日期，为yyyy年MM月dd日格式
+    function formatDate(nowDate) {
+        var year = nowDate.getFullYear();
+        var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+        var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        var dateStr = year + "年" + month + "月" + day + "日";
+        return dateStr;
+    }
+
+</script>
+</html>

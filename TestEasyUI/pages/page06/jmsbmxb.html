@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增值税减免税申报明细表</title>
+    <style>
+        body{
+            font-family:"SimSun";
+            font-size:12px;
+        }
+        table{
+            border: 0px solid black;
+            border-collapse:collapse;
+            font-size: 14px;
+        }
+        td{
+            border: 1px solid black;
+            padding :8px;
+            text-align:right;
+            /* //width: 100px;*/
+            height:16px;
+        }
+        td[class=nostyle]{
+            border: 0;
+            text-align: left;
+        }
+        .tdNoBorder{
+            border: 0px solid black;
+        }
+        .bluebgcolor{
+            background-color:white;
+        }
+        .whitebgcolor{
+            background-color: white;
+        }
+        .graybgcolor{
+            background-color:white;
+        }
+        .txtCenter{
+            text-align:center;
+        }
+        .txtLeft{
+            text-align:left;
+        }
+        .txtRight{
+            text-align:right;
+        }
+        .txtBlueColor{
+            color:white;
+        }
+        .monthLink{
+            margin-left:20px;margin-right: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:1300px;">
+        <span><<</span>
+        <span class="monthLink">[1]</span>
+        <span class="monthLink">[2]</span>
+        <span class="monthLink">[3]</span>
+        <span class="monthLink">[4]</span>
+        <span class="monthLink">[5]</span>
+        <span class="monthLink">[6]</span>
+        <span class="monthLink">[7]</span>
+        <span class="monthLink">[8]</span>
+        <span class="monthLink">[9]</span>
+        <span class="monthLink">[10]</span>
+        <span class="monthLink">[11]</span>
+        <span class="monthLink">[12]</span>
+        <span>>></span>
+    </div>
+    <div style="width:1300px; border:0px solid black;" >
+        <p style="font-size:32px; text-align:center; width:100%; line-height:32px;" >增值税减免税申报明细表</p>
+        <p style="font-size:16px; text-align:center; color:red; line-height:16px;">温馨提醒：如您需要填写“减税项目”或“免税项目”具体明细，请点击增加按钮增加行次进行填报！</p>
+        <p style="font-size:16px; text-align:center; color:red; line-height:16px;">用于免税额计算的适用税率取自税费种认定信息。如有疑义，请针对“免税额”列自行修改。</p>
+        <p style="font-size:14px; text-align:center; line-height:14px;">税款所属时间：2018年03月01日 至 2018年03月31日</p>
+        <table width="100%">
+            <!-- 题头 -->
+            <tr>
+                <td width="52%" class="txtLeft tdNoBorder" colspan="4">纳税人名称（公章）：</td>
+                <td width="12%" class="txtLeft tdNoBorder"></td>
+                <td width="12%" class="txtLeft tdNoBorder"></td>
+                <td width="24%" colspan="2" class="txtLeft tdNoBorder">金额单位：元（列至角分）</td>
+            </tr>
+            <!-- 第1行 标题 -->
+            <tr>
+                <td colspan="8" class="txtCenter bluebgcolor" style="line-height: 14px;font-size: 14px;">一、减税项目</td>
+            </tr>
+            <!-- 第2行 -->
+            <tr class="bluebgcolor">
+                <td class="txtCenter" rowspan="2" colspan="2" style="width:35%;">减税性质代码及名称</td>
+                <td class="txtCenter" rowspan="2" style="width:5%;">栏次</td>
+                <td class="txtCenter" style="width:12%;">期初余额</td>
+                <td class="txtCenter" style="width:12%;">本期发生额</td>
+                <td class="txtCenter" style="width:12%;">本期应抵减税额</td>
+                <td class="txtCenter" style="width:12%;">本期实际抵减税额</td>
+                <td class="txtCenter" style="width:12%;">期末余额</td>
+            </tr>
+            <!-- 第3行 -->
+            <tr class="bluebgcolor">
+                <td class="txtCenter" style="width:12%;">1</td>
+                <td class="txtCenter" style="width:12%;">2</td>
+                <td class="txtCenter" style="width:12%;">3=1+2</td>
+                <td class="txtCenter" style="width:12%;">4≤3</td>
+                <td class="txtCenter" style="width:12%;">5=3-4</td>
+            </tr>
+            <!-- 第4行 -->
+            <tr>
+                <td class="txtCenter bluebgcolor" style="width:30%;">合计</td>
+                <td class="txtCenter bluebgcolor" style="width:5%;">
+                    <!-- 添加按钮 -->
+                    <input type="button" class="" value="添加" style="width:50px;border:1px solid black;"/>
+                </td>
+                <td class="txtCenter bluebgcolor" style="width:5%;">
+                    <!-- 删除按钮 -->
+                    <input type="button" class="" value="删除" style="width:50px;border:1px solid black;"/>
+                </td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <!-- 第5行 标题 -->
+            <tr>
+                <td colspan="8" class="txtCenter bluebgcolor" style="line-height: 14px;font-size: 14px;">二、免税项目</td>
+            </tr>
+            <!-- 第6行 -->
+            <tr class="bluebgcolor">
+                <td class="txtCenter" rowspan="2" colspan="2" style="width:35%;">免税性质代码及名称</td>
+                <td class="txtCenter" rowspan="2" style="width:5%;">栏次</td>
+                <td class="txtCenter" style="width:12%;">免征增值税项目销售额</td>
+                <td class="txtCenter" style="width:12%;">免税销售额扣除项目<br/>本期实际扣除金额</td>
+                <td class="txtCenter" style="width:12%;">扣除后免税销售额</td>
+                <td class="txtCenter" style="width:12%;">免税销售额<br/>对应的进项税额</td>
+                <td class="txtCenter" style="width:12%;">免税额</td>
+            </tr>
+            <!-- 第7行 -->
+            <tr class="bluebgcolor">
+                <td class="txtCenter" style="width:12%;">1</td>
+                <td class="txtCenter" style="width:12%;">2</td>
+                <td class="txtCenter" style="width:12%;">3=1-2</td>
+                <td class="txtCenter" style="width:12%;">4</td>
+                <td class="txtCenter" style="width:12%;">5</td>
+            </tr>
+            <!-- 第8行 -->
+            <tr>
+                <td class="txtCenter bluebgcolor" style="width:30%;">合计</td>
+                <td class="txtCenter bluebgcolor" style="width:5%;">
+                    <!-- 添加按钮 -->
+                    <input type="button" class="" value="添加" style="width:50px;border:1px solid black;"/>
+                </td>
+                <td class="txtCenter bluebgcolor" style="width:5%;">
+                    <!-- 删除按钮 -->
+                    <input type="button" class="" value="删除" style="width:50px;border:1px solid black;"/>
+                </td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <!-- 第9行 -->
+            <tr>
+                <td class="txtCenter bluebgcolor" style="width:40%;" colspan="3">出口免税</td>
+                <td class="whitebgcolor" style="width:12%;">0.00</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+            </tr>
+            <!-- 第10行 -->
+            <tr>
+                <td class="txtCenter bluebgcolor" style="width:40%;" colspan="3">其中：跨境服务</td>
+                <td class="whitebgcolor" style="width:12%;">0.00</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+                <td class="graybgcolor txtCenter" style="width:12%;">--</td>
+            </tr>
+            <!--<tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>-->
+        </table>
+    </div>
+</body>
+</html>

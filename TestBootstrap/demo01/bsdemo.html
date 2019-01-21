@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> --- Bootstrap Demo Page --- </title>
+<!-- 此页面测试Bootstrap -->
+ <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bsdemo.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+ 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+<script src="bsdemo.js"></script>
+</head>
+<body>
+	<h1>What, 这就是Bootstrap!</h1>
+	<p>这是P标签</p>
+	<div>这是DIV标签</div>
+	<h2>这是H2标签</h2>
+	<h3>这是H3标签</h3>
+	<h4>这是H4标签</h4>
+	<h5>这是H5标签</h5>
+	<h6>这是H6标签</h6>
+	<div style="border:1px solid gray; width:40%;">
+		<form>
+			<table>
+				<tr>
+					<td class="alignright" width="180px;">USERNAME:</td>
+					<td><input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td class="alignright">PASSWORD:</td>
+					<td><input type="text" name="password"></td>
+				</tr>
+				<tr>
+					<td class="alignright">GENDER:</td>
+					<td><input type="radio" name="gender" value="M">男&nbsp;<input type="radio" name="gender" value="F">女</td>
+				</tr>
+				<tr>
+					<td class="alignright">INTEREST:</td>
+					<td>
+						<input type="checkbox" name="interest" value="basketball">basketball<br/>
+						<input type="checkbox" name="interest" value="football">football<br/>
+						<input type="checkbox" name="interest" value="volleyball">volleyball<br/>
+					</td>
+				</tr>
+				<tr>
+					<td class="alignright">下拉选择框</td>
+					<td>
+						<select id="myselect1" name="myselect1">
+							<option value="">--选择一个--</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="reset"/> <input type="submit" onclick="javascript:btn_submit();return false;"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

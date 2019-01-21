@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DateBox yyyyMM 格式</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+<input class="easyui-datebox" editable="false"
+       type="text" name="rollOutPeriod"
+       id="o_rollOutPeriod"
+       data-options="width:100,required:true"/>选择转出所属期
+<br/>
+<a class="easyui-linkbutton" id="btn_showDate" data-options="iconCls:'icon-ok'">ClickMe</a>
+</body>
+<script>
+    function showDateYYYYMM(){
+        //alert('');
+        var dateStr = $("#o_rollOutPeriod").textbox('getValue');
+        alert(dateStr?dateStr:"没有选择日期");
+    }
+
+    $(function () {
+
+        $("#btn_showDate").on('click', showDateYYYYMM);
+
+        //这段代码是使日期框显示年月的。。。
+        var p = $('#o_rollOutPeriod').datebox('panel');
+        var tds = false;
+        var span = p.find('span.calendar-text');
+        $('#o_rollOutPeriod').datebox({
+            onShowPanel: function () {
+                span.trigger('click');
+                if (!tds)
+                    setTimeout(function() {
+                        tds = p.find('div.calendar-menu-month-inner td');
+                        tds.click(function(e) {
+                            e.stopPropagation();
+                            var year = /\d{4}/.exec(span.html())[0] ,
+                                month = parseInt($(this).attr('abbr'), 10);
+                            $('#o_rollOutPeriod').datebox('hidePanel').datebox('setValue', year  + month);
+                        });
+                    }, 0);
+            },
+            parser: function (s) {
+                if (!s) return new Date();
+                var date=new Date(parseInt(s.substring(0,4), 10), parseInt(s.substring(4), 10) - 1, 1);
+                return date;
+            },
+            formatter: function (d) {
+                var currentMonth = (d.getMonth()+1);
+                var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+                return d.getFullYear() + currentMonthStr;
+            }
+        });
+    });
+</script>
+</html>

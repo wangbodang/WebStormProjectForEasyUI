@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+           $(":input[name='appendAmount']").on('blur', function () {
+               var appendAmount = $(":input[name='appendAmount']").val();
+               var amount = $(":input[name='amount']").val();
+               if(!amount && !appendAmount){
+                   alert("请输入金额/总金额");
+                   return false;
+               }else{
+                   $(":input[name='totalAmount']").val(Number(appendAmount)+Number(amount));
+               }
+           });
+        });
+    </script>
+</head>
+<body>
+    <h3>Test</h3>
+    <table>
+
+        <tr>
+            <td>
+                合同总金额:<input name="totalAmount" type="text"/>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                金额:<input name="amount" type="text"/>
+            </td>
+            <td>
+                追加金额:<input name="appendAmount" type="text"/>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

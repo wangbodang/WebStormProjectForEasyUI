@@ -1,0 +1,28 @@
+div{
+    border: 1px solid silver;
+    width:50%;
+    margin: 10px auto;
+    padding:10px;
+}
+table{
+    margin:10px auto;
+    border: 1px solid silver;
+    border-collapse: collapse;
+    width: 55%;
+}
+td{
+    border: 1px solid silver;
+    padding:8px;
+}
+button[class=mydefault]{
+    display: block;
+    margin: 10px auto;
+    color:blue;
+}
+form{
+    padding: 20px;
+    border: 1px solid gray;
+    margin:180px auto;
+    width:35%;
+    text-align: center;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String Test Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        function test() {
+            var str = 'xieyingdeng';
+            var strArr = str.split('@');
+            console.log("---> strArr长度 : "+strArr.length);
+            for(var i=0;i<strArr.length;i++){
+                console.log("  -> "+strArr[i]);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <h3>String Test Page</h3>
+    <hr/>
+    <a class="easyui-linkbutton" iconCls="icon-search" onclick="test()">Test</a>
+</body>
+</html>

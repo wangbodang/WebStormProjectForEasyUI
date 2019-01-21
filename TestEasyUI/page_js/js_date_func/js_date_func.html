@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS DATE FUNC</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <script>
+
+
+    </script>
+
+</head>
+<body>
+    <div style="width: 35%;margin: 100px auto;">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="test()">Click Me</a>
+    </div>
+
+
+<script>
+    //初始化
+    $(function () {
+
+    })
+    //测试框
+    function test() {
+        console.log(getPrePeriod('201812'));
+
+    }
+
+    //from 201901 ---> 201812
+    function getPrePeriod(yyyyMM) {
+        var now = new Date();
+        now.setFullYear(yyyyMM.substr(0,4));
+        now.setMonth(Number(yyyyMM.substr(4,2))-2);
+        return formatYYYYMM(now);
+    }
+
+    function formatYYYYMM(date) {
+        var result = "";
+        result += date.getFullYear();
+        var month = date.getMonth()+1;
+        result += ((month<10)?("0"+month):month);
+        return result;
+    }
+
+    function fillToday() {
+        $("#today").textbox('setValue', formatDate(new Date()));
+    }
+    function fillMonthFirstDay() {
+        $("#monthFirstDay").textbox('setValue', formatDate(getCurrentMonthFirst()));
+    }
+    function fillMonthLastDay() {
+        $("#monthLastDay").textbox('setValue', formatDate(getCurrentMonthLast()));
+    }
+    // 格式化日期，为yyyy年MM月dd日格式
+    function formatDate(nowDate) {
+        var year = nowDate.getFullYear();
+        var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+        var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        var dateStr = year + "年" + month + "月" + day + "日";
+        return dateStr;
+    }
+    // 获取月初第一天
+    function getCurrentMonthFirst(){
+        var date=new Date();
+        date.setDate(1);
+        return date;
+    }
+    // 获取当前月的最后一天
+    function getCurrentMonthLast(){
+        var date=new Date();
+        var currentMonth=date.getMonth();
+        var nextMonth=++currentMonth;
+        var nextMonthFirstDay=new Date(date.getFullYear(),nextMonth,1);
+        var oneDay=1000*60*60*24;
+        return new Date(nextMonthFirstDay-oneDay);
+    }
+    //获取当期税款所属期 格式为 YYYYMM/201805
+    function getYYYYMM()
+    {
+        var now = new Date();
+        var year = now.getFullYear();       //年
+        var month = now.getMonth() + 1;     //月
+        var period = year+'';
+        if(month < 10)
+            period += "0";
+        period += month;
+        return (period);
+    }
+</script>
+</body>
+</html>

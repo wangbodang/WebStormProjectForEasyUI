@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Progress Bar</title>
+
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+    <h3>Progress Bar</h3>
+    <hr/>
+    <div style="border: 1px solid aquamarine; margin:40px auto; width:40%; height: 500px; padding:12px;">
+        <p> Progress Bar Demo</p>
+        <a id="btn_start" class="easyui-linkbutton" data-options="text:'Start'"></a>
+        <br/><br/>
+        <div id="probar" class="easyui-progressbar" style="width:400px;"></div>
+    </div>
+<script>
+    $(function () {
+        console.log("页面加载");
+        $("#btn_start").on('click', startProgress);
+    });
+    //
+    function startProgress() {
+        //$.messager.alert("INFO", "ProgressBar start!");
+        var value = $('#probar').progressbar('getValue');
+        if (value < 100){
+            value += Math.floor(Math.random() * 10);
+            $('#probar').progressbar('setValue', value);
+            setTimeout(arguments.callee, 200);
+        }
+    }
+</script>
+</body>
+</html>

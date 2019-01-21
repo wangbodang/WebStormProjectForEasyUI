@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+</head>
+<body>
+    <h3>Demo Page - TEST ATTR AND PROP</h3>
+    <hr/>
+    <table>
+        <tr>
+            <td style="width: 270px;">
+                <a class="easyui-linkbutton" id="btn1" data-options="iconCls:'icon-search'">上传/查看</a>
+            </td>
+            <td>
+                <a class="easyui-linkbutton" id='testLinkBtn' data-options="iconCls:'icon-search'" onclick="changeBtn1();">TEST LinkBtn</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="easyui-textbox" id="tbox1" data-options="editable:false, width: 100" value="XXX"/>
+            </td>
+            <td>
+                <a class="easyui-linkbutton" id='testTextBox1' data-options="iconCls:'icon-search'" onclick="changeTextBox();">TEST TextBox</a>
+                <a class="easyui-linkbutton" id='testTextBox2' data-options="iconCls:'icon-search'" onclick="changeTextBox();">Set TextBox Multiline</a>
+            </td>
+        </tr>
+    </table>
+
+<script>
+    function changeTextBox() {
+        var editable = $("#tbox1").textbox('options').editable;
+        //console.log('-->'+editable+", typeof : "+typeof(editable));
+        if(!editable){
+            $("#tbox1").textbox({editable:true});
+        }
+        var tBoxWidth = $("#tbox1").textbox('options').width;
+        console.log("---> tBoxWidth : "+tBoxWidth+", typeof : "+typeof (tBoxWidth));
+        if(tBoxWidth<200){
+            tBoxWidth = tBoxWidth + 150;
+            $("#tbox1").textbox({width:tBoxWidth});
+        }else{
+            $("#tbox1").textbox({width:100});
+        }
+
+    }
+    function changeBtn1() {
+        var text = $("#btn1").linkbutton('options').text;
+        console.log("--->"+text);
+        if(text == '上传/查看'){
+            $("#btn1").linkbutton({text:'fook'});
+        }else{
+            $("#btn1").linkbutton({text:'上传/查看'});
+        }
+    }
+</script>
+</body>
+</html>

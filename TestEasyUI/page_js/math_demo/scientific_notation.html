@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Random Demo</title>
+
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+<input class="easyui-textbox" id="myNum" data-options="precision:2">
+<a class="easyui-linkbutton" data-options="iconCls:'icon-ok',text:'转换'" onclick="trans();"></a>
+<input class="easyui-textbox" id="myNumTxt" data-options="" width="210px">
+<br/>
+<br/>
+<a class="easyui-linkbutton" data-options="iconCls:'icon-ok',text:'输出'" onclick="test();"></a>
+<script>
+    function trans() {
+        //var num = Number('2e-5');
+        var num = $("#myNum").numberbox('getValue');
+        console.log('---> numberbox获取的类型为 : '+typeof( num ));
+        if('string' == typeof num){
+            num = Number(num);
+        }
+        $("#myNumTxt").textbox('setValue', toNonExponential(num));
+    }
+    //将科学计数法转换为小数
+    function toNonExponential(num) {
+        try{
+            var m = num.toExponential().match(/\d(?:\.(\d*))?e([+-]\d+)/);
+            return num.toFixed(Math.max(0, (m[1] || '').length - m[2]));
+        } catch (e) {
+            console.log('---> '+e.toString());
+        }
+    }
+    //测试时间
+    function test() {
+        var start = new Date();
+        var temp = 0;
+        console.log("--->开始时间 : "+start.getTime());
+        for(var i=1; i<1000000;i++){
+            temp += i;
+            if(i%500==0){
+                console.log('-> '+i+" "+temp);
+            }
+        }
+        var end = new Date();
+        console.log("--->结束时间 : "+end.getTime());
+        console.log("---> temp:"+temp);
+        console.log('--->共耗时 : '+(end-start)/1000);
+    }
+    //测试科学计数法
+    function test2() {
+        //var num = 2.3e-6;
+        //var num = -2.3456789e6;
+        //var num = 0.000002356789
+        /*
+            var num = 23456789000
+            console.log('--->'+num.toExponential());
+            console.log('--->'+num.toPrecision(4));
+            console.log('--->'+num.toFixed(2));
+        */
+
+        var num = new Boolean(0);
+        console.log('---> num:'+num);
+        if("number" == typeof num){
+            console.log('这是数字');
+        }else{
+            console.log('这不是数字');
+        }
+        console.log('-> typeof num : '+typeof num);
+
+    }
+</script>
+</body>
+</html>

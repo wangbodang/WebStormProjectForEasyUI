@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Copy Time</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+    <a class="easyui-linkbutton" onclick="copyBySlice()" data-options="iconCls:'icon-ok', text:'CopyBySlice'"></a>
+    用时<input class="easyui-textbox" id="time1">毫秒
+    <br/>
+    <br/>
+    <a class="easyui-linkbutton" onclick="copyByConcat()" data-options="iconCls:'icon-ok', text:'CopyByConcat'"></a>
+    用时<input class="easyui-textbox" id="time2">毫秒
+    <br/>
+    <br/>
+    <a class="easyui-linkbutton" onclick="copyByForeach()" data-options="iconCls:'icon-ok', text:'CopyByConcat'"></a>
+    用时<input class="easyui-textbox" id="time3">毫秒
+    <br/>
+    <br/>
+<script>
+    var demoArr = [];
+    $(function () {
+        for(var i=0; i<5000000; i++){
+            demoArr[i] = 'a'+i;
+        }
+    });
+   function copyBySlice() {
+       var starTime = new Date();
+       var newArr = [];
+       newArr = demoArr.slice();
+       var endTime = new Date();
+       $("#time1").textbox('setValue', endTime-starTime);
+   }
+
+   function copyByConcat() {
+       var starTime = new Date();
+       var newArr = [];
+       newArr = demoArr.concat()
+       var endTime = new Date();
+       $("#time2").textbox('setValue', endTime-starTime);
+   }
+    function copyByForeach() {
+        var starTime = new Date();
+        var newArr = [];
+        for(var i=0;i<demoArr.length;i++){
+            newArr[i] = demoArr[i];
+            /*if(i%10000 == 0){
+                console.log('--->'+newArr[i]);
+            }*/
+        }
+        var endTime = new Date();
+        $("#time3").textbox('setValue', endTime-starTime);
+    }
+
+</script>
+</body>
+</html>

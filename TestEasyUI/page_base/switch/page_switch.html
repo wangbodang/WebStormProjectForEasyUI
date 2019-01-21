@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript --- test switch case</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            // var value = $("#flag").textbox('getValue');
+            // console.log("填入的值为:"+value);
+            /*$('#flag2').textbox('textbox').bind('focus', function() {
+                alert(1);
+                return false;
+            });*/
+        })
+
+        function testSwitch() {
+            var value = $("#flag").textbox('getValue');
+            console.log("填入的值为:"+value);
+            switch(value){
+                case 'abc':
+                    $.messager.alert("消息", "输入的为字符串"+value);
+                    break;
+                case '5':
+                    $.messager.alert("消息", "输入的为5");
+                    break;
+                default:
+                    $.messager.alert("消息", "未配上！");
+            }
+        }
+        function boxFocus() {
+            console.log("Click");
+        }
+
+    </script>
+</head>
+<body>
+    <h3>Test SwitchCase</h3>
+    <input id="flag" class="easyui-textbox" missingMessage="missingMsg"
+            data-options="prompt:'Foo',events:{blur:testSwitch}"/>&nbsp;&nbsp;&nbsp;
+    <input id="flag2" class="easyui-textbox" data-options="required:true">
+
+    <script>
+        $(function () {
+            $("#flag2").textbox('textbox').bind("click", function () { alert("aaaaa")});
+            //$("#flag2").textbox('textbox').bind('blur', function () { alert("xxxx")});
+            // $("input",$("#flag2").next("span")).blur(function(){
+            //     alert("ok");
+            // });
+        })
+    </script>
+</body>
+</html>

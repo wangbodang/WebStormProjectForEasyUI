@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../_css/global.css">
+    <script type="text/javascript" src="../_js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        //onfocus 获得焦点时
+        var backToNumber=function(input){
+            var old_val=$(input).val();
+            $(input).val(old_val.replace(/,/g,""));
+        }
+        //onblur 失去焦点时
+        var check_fbfp = function(input,num){
+            var old_val=$(input).val();
+            if(old_val=='' || old_val==null || isNaN(old_val) || old_val<0 ){
+                alert("请输入正确的数字！");
+                $(input).val("0.00");
+                return;
+            }
+            if(num==3 && old_val>1){
+                alert("请输入正确的税率(0-1.0)！");
+                $(input).val("");
+                return false;
+            }
+            $(input).val(jdglTools.formatMoney(old_val));
+
+        }
+        var jdglTools = (function(){
+            return{
+                formatMoney : function(number, places, symbol, thousand, decimal){
+                    number = number || 0;
+                    places = !isNaN(places = Math.abs(places)) ? places : 2;
+                    symbol = symbol !== undefined ? symbol : "";
+                    thousand = thousand || ",";
+                    decimal = decimal || ".";
+                    var negative = number < 0 ? "-" : "",
+                            i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+                            j = (j = i.length) > 3 ? j % 3 : 0;
+                    return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
+                }
+            }
+        })();
+        function changeFormat(){
+
+        }
+    </script>
+</head>
+<body>
+    <form>
+        输入金额 : <input type="text" onfocus="backToNumber(this);" onblur="check_fbfp(this,2);"/>
+    </form>
+
+</body>
+</html>

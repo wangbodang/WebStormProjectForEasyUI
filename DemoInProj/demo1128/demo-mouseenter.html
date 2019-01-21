@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../_css/global.css">
+    <script type="text/javascript" src="../_js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('body').on('mouseenter', 'form', function(){
+                $(this).css('background-color', 'red');
+                console.log('进入的元素 : '+$(this));
+            });
+            /*$('form').eq(0).mouseenter(function(){
+                $(this).css('background-color', 'red');
+            });
+            $('p').mouseenter(function(item){
+                console.log($(item));
+                $(item).css('background-color', 'red');
+            });*/
+            $('body').on('mouseleave', 'form', function(){
+                $(this).removeAttr('style');
+                console.log($(this));
+            })
+        });
+
+    </script>
+</head>
+<body>
+    <form>
+        <p>Test TEXT</p>
+    </form>
+
+</body>
+</html>

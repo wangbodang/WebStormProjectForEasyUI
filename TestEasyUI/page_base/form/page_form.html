@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Form</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+</head>
+<body>
+    <form id="form1">
+        hidden<input type="hidden" id="ID" name="id" class="easyui-textbox"/>
+        name:<input id="TEST" name="test" class="easyui-textbox"/>
+    </form>
+    <a class="easyui-linkbutton" onclick="loadForm();">LoadForm</a>
+    <a class="easyui-linkbutton" onclick="submitForm();">SubmitForm</a>
+    <script>
+        function loadForm(){
+            $("#form1").form('load',{
+                id:'11001',
+                test:'wangbodang'
+            })
+        }
+
+        function submitForm(){
+            $("#form1").form('submit',{
+                url:'xxx.do',
+                onSubmint:function (param) {
+
+                },
+                success:function (data) {
+                    alert(data);
+                }
+            })
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page02</title>
+
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+
+    <script type="text/javascript" src="page02.js"></script>
+    <style type="text/css">
+        /*.title{
+            width:161px;
+        }*/
+    </style>
+</head>
+<body>
+    <div id="page2_div">
+        <div class="easyui-tabs" id="tabs" style="width: 100%">
+            <div title="我的测试页面">
+                <table>
+                    <tr>
+                        <td>
+                            <span style="padding-left: 5px; text-align: right;">公司名称</span>
+                        </td>
+                        <td>
+                            <span>
+                            <ul class="easyui-combotree" data-options=
+                                    "url:'',method:'get',animate:true,
+                                               data:[{
+                                                    text: 'Item1',
+                                                    state: 'closed',
+                                                    children: [{
+                                                        text: 'Item11'
+                                                    },{
+                                                        text: 'Item12'
+                                                    }]
+                                                },{
+                                                    text: 'Item2'
+                                                  }]">
+
+                            </ul>
+                        </span>
+                        </td>
+                        <td>xxxxxx</td>
+                        <td>tttttttttt</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="title" style="padding-left: 5px;" align="right">发票代码</span>
+                        </td>
+                        <td>
+                            <input type="text" id="txt_secondParty" name="invoiceCode" class="input datacontrol" style="width: 200px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="title" style="padding-left: 5px" align="right">开票日期:</span>
+                        </td>
+                        <td>
+                            <input class="easyui-datebox" editable="false" type="text" name="startDate" id="fromtime1" data-options="width:100"/>
+                            <span> - </span>
+                            <input class="easyui-datebox" editable="false" type="text" name="endDate" id="fromtime2" data-options="width:100"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="title" style="padding-left: 5px" align="right">测试下拉框:</span>
+                        </td>
+                        <td>
+                            <select id="select01" name="sel01">
+                                <option value="" selected> --- 选择 --- </option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span class="title" style="padding-left: 5px" align="right">EasyUI下拉框:</span>
+                        </td>
+                        <td>
+                            <select id="cc" class="easyui-combobox" name="dept" style="width:200px;">
+                                <option value="aa">aitem1</option>
+                                <option>bitem2</option>
+                                <option>bitem3</option>
+                                <option>ditem4</option>
+                                <option>eitem5</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a id="btn_submit" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Click Me</a>
+                        </td>
+                    </tr>
+                </table>
+
+                <div>分隔栏 表格
+                    <span>
+                        <a id="btn_loadData1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width:110px">点我获取数据</a>
+                    </span>
+                </div>
+
+                <table id="data_tab1"
+                       class="easyui-datagrid" style="width:100%;"
+                       title="数据表格一"
+                       data-options="url:'fuck',
+                                     fitColumns:false,
+                                     singleSelect:false,
+                                     rownumbers:true,
+                                     toolbar:'#tb1_toolbar',
+                                     striped:true,
+                                     sortName:'price',
+                                     pagination:true">
+                    <thead>
+                    <tr>
+                        <th data-options="field:'code',width:100" align="center">Code</th>
+                        <th data-options="field:'name',width:100" align="center">Name</th>
+                        <th data-options="field:'price',width:100,align:'right'" align="center">Price</th>
+                        <th data-options="field:'operate',width:120,align:'center'" align="center">Operate</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5445</td>
+                            <td>李锦伦</td>
+                            <td>323556</td>
+                            <td>零元 全部 部分</td>
+                        </tr>
+                        <tr>
+                            <td>5446</td>
+                            <td>洪熙官</td>
+                            <td>123556</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5447</td>
+                            <td>黄三太</td>
+                            <td>523556</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--  -->
+                <div style="margin:10px 0;">
+                    <span>Selection Mode: </span>
+                    <select onchange="$('#data_tab1').datagrid({singleSelect:(this.value==0)})">
+                        <option value="0">单选行</option>
+                        <option value="1">复选行</option>
+                    </select>
+                </div>
+                <!--  -->
+                <div id="tb1_toolbar">
+                    <div>
+                        <div>
+                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
+                            <a href="#" class="easyui-linkbutton"
+                               data-options="iconCls:'icon-help',plain:true"
+                               onclick="javascript:getInfo();">提示信息</a>
+                        </div>
+                        <div>
+                            Date From: <input class="easyui-datebox" style="width:80px">
+                            To: <input class="easyui-datebox" style="width:80px">
+                            Language:
+                            <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+                                <option value="java">Java</option>
+                                <option value="c">C</option>
+                                <option value="basic">Basic</option>
+                                <option value="perl">Perl</option>
+                                <option value="python">Python</option>
+                            </select>
+                            <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div>分隔栏 这个表格由js创建
+                    <span>
+                        <a id="btn_loadData2" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width:110px">点我获取数据</a>
+                    </span>
+                </div>
+
+                <table id="dg" title="数据表格二"></table>
+
+                <script type="text/javascript">
+                    $('#dg').datagrid({
+                        url:'',
+                        pagination:true,
+                        singleSelect:true,
+                        striped:true,
+                        columns:[[
+                            {field:'code',title:'Code',width:100},
+                            {field:'name',title:'Name',width:100},
+                            {field:'price',title:'Price',width:100,align:'right'}
+                    ]],
+                        data:[{
+                            code:12,
+                            name:'wangbodang',
+                            price:12313
+                        },{
+                            code:13,
+                            name:'xieyingdeng',
+                            price:12313
+                        },{
+                            code:14,
+                            name:'qiguoyuan',
+                            price:12313
+                        }
+                        ,{
+                            code:15,
+                            name:'lirugui',
+                            price:12313
+                        },{
+                            code:16,
+                            name:'shanxiongxin',
+                            price:12313
+                        }]
+                    });
+                    //设置工具栏
+                    $('#dg').datagrid({
+                        toolbar: [{
+                            iconCls: 'icon-edit',
+                            handler: function(){alert('edit')}
+                        },'-',{
+                            iconCls: 'icon-help',
+                            handler: function(){alert('help')}
+                        }]
+                    });
+                </script>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

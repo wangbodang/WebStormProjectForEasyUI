@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../_css/global.css">
+    <script type="text/javascript" src="../_js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        function setKeyUpEvent(){
+            $('#test1').on('keyup', function(){
+                
+                //alert('按键弹起');
+                var $test1 = $('#test1');
+                var txtCount = $test1.val().length;
+                var allowChars = parseInt(250-txtCount, 10);
+                if(allowChars>0){
+                    $('#txtCount').html('剩余可输入'+allowChars+'个字');
+                }else{
+                    $('#txtCount').html('剩余可输入'+0+'个字');
+                    $test1.val($test1.val().substring(0,250));
+                }
+
+            })
+        }
+        $(document).ready(function(){
+           $('#showTxt').on('click', function(){
+               alert($('#test1').val());
+               return false;
+           })
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <button id="showTxt">clickme</button>
+        <br/>
+        <textarea id="test1" cols="40" rows="10" onclick="setKeyUpEvent();"></textarea>
+        <br/>
+        <span id="txtCount" style="border:1px solid gray; color:gray;"></span>
+
+    </form>
+
+</body>
+</html>

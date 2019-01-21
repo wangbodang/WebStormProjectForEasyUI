@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page01</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        table, td, th{
+            border:1px solid green;
+        }
+        table{
+            border-collapse: collapse;
+            margin:80px;
+            width:40%;
+        }
+        td{
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+    <!--<div class="easyui-panel" title="Foo">
+        <p>Test TEXT</p>
+    </div>-->
+    <table>
+        <thead>
+            <tr>
+                <th>XXX</th>
+                <th>YYY</th>
+                <th>ZZZ</th>
+                <th>AAA</th>
+                <th>BBB</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row35">
+                <td>MMM</td>
+                <td>NNN</td>
+                <td>CCC</td>
+                <td>DDD</td>
+                <td>EEE</td>
+            </tr>
+        </tbody>
+    </table>
+<script>
+    $(function () {
+        var jsonObj = {};
+        jsonObj.copies=234;
+        jsonObj.amount=3434.34;
+        jsonObj.taxAmount=88888.88;
+        fillRowData3(35, jsonObj);
+    });
+
+    function fillRowData3(rowNum, jsonObj) {
+        var tds = $("#row"+rowNum).children("td");
+        console.log("td的个数为:"+tds.length);
+        tds.eq(2).text(jsonObj.copies);
+        tds.eq(3).text(outputmoney(jsonObj.amount));
+        tds.eq(4).text(outputmoney(jsonObj.taxAmount));
+    }
+
+    function outputmoney(number) {
+        number = number+"";
+        number = number.replace(/\,/g, "");
+        if(isNaN(number) || number == "")return "";
+        number = Math.round(number * 100) / 100;
+        if (number < 0)
+            return '-' + outputdollars(Math.floor(Math.abs(number) - 0) + '') + outputcents(Math.abs(number) - 0);
+        else
+            return outputdollars(Math.floor(number - 0) + '') + outputcents(number - 0);
+    }
+    //格式化金额
+    function outputdollars(number) {
+        if (number.length <= 3)
+            return (number == '' ? '0' : number);
+        else {
+            var mod = number.length % 3;
+            var output = (mod == 0 ? '' : (number.substring(0, mod)));
+            for (i = 0; i < Math.floor(number.length / 3); i++) {
+                if ((mod == 0) && (i == 0))
+                    output += number.substring(mod + 3 * i, mod + 3 * i + 3);
+                else
+                    output += ',' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+            }
+            return (output);
+        }
+    }
+    function outputcents(amount) {
+        amount = Math.round(((amount) - Math.floor(amount)) * 100);
+        return (amount < 10 ? '.0' + amount : '.' + amount);
+    }
+</script>
+</body>
+</html>

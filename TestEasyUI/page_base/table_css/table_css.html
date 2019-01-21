@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table css demo</title>
+    <style>
+        div table{
+            border:8px solid blue;
+            padding:0px;
+            border-spacing:10px;
+            padding: 10px;
+        }
+        td{
+            border:1px solid green;
+            width:100px;
+            height: 30px;
+            padding:10px;
+            margin:20px;
+
+        }
+        table[id=test] td{
+            border:5px dotted yellow;
+        }
+        table[id=test]{
+            border:3px solid purple;
+        }
+        .redBorder{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+            </tr>
+            <tr>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table id="test">
+            <tr>
+                <td class="redBorder"  style="border-color:red;">SSS</td>
+                <td>SSS</td>
+                <td>SSS</td>
+            </tr>
+            <tr>
+                <td>SSS</td>
+                <td>SSS</td>
+                <td>SSS</td>
+            </tr>
+        </table>
+    </div>
+    <table>
+        <tr>
+            <td>TTT</td>
+            <td>TTT</td>
+            <td>TTT</td>
+        </tr>
+        <tr>
+            <td>TTT</td>
+            <td>TTT</td>
+            <td>TTT</td>
+        </tr>
+    </table>
+</body>
+</html>

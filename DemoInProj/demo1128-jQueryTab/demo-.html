@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">
+        $(window).ready(function() {
+            $('.tab1').tabChange({
+                name: '.tab1',
+                invoke: 2,
+                behavior: 'click',
+                effect:'fade',
+                time:2000
+            });
+            $('.tab2').tabChange({
+                name: '.tab2',
+                invoke: 1,
+                behavior: '',
+                effect:''
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="tab1 tab">
+    <ul class="tab-nav">
+        <li class="actived"> <a href="javascript:;">新闻</a> </li>
+        <li> <a href="javascript:;">娱乐</a> </li>
+        <li> <a href="javascript:;">电影</a> </li>
+        <li> <a href="javascript:;">科技</a> </li>
+    </ul>
+    <div class="content-wrap">
+        <div class="content-item current"> <img src="img/timg5.jpg" alt="" /> </div>
+        <div class="content-item"> <img src="img/timg6.jpg" alt="" /> </div>
+        <div class="content-item"> <img src="img/timg7.jpg" alt="" /> </div>
+        <div class="content-item"> <img src="img/timg8.jpg" alt="" /> </div>
+    </div>
+</div>
+<div class="tab2 tab">
+    <ul class="tab-nav">
+        <li class="actived"> <a href="javascript:;">新闻</a> </li>
+        <li> <a href="javascript:;">娱乐</a> </li>
+        <li> <a href="javascript:;">电影</a> </li>
+        <li> <a href="javascript:;">科技</a> </li>
+    </ul>
+    <div class="content-wrap">
+        <div class="content-item current"> <img src="img/timg5.jpg" alt="" /> </div>
+        <div class="content-item"> <img src="img/timg6.jpg" alt="" /> </div>
+        <div class="content-item"> <img src="img/timg7.jpg" alt="" /> </div>
+        <div class="content-item"> <img src="img/timg8.jpg" alt="" /> </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Radio Test</title>
+
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+    <h3>Radio Test</h3>
+    <hr/>
+    <div>
+        <table>
+            <tr id="client_check1">
+                <th>委托人证件类型:</th>
+                <td><input id="certType1" type="radio" name="certType" checked="checked" value="id" onclick="setRadioValue()"><label>身份证</label></input>
+                    <input id="certType2" type="radio" name="certType" value="Passport" onclick="setRadioValue()"><label>护照</label></input>
+                </td>
+            </tr>
+            <tr>
+                <td>获取Radio值:</td>
+                <td>
+                    <a id="btn_getRadionValue" class="easyui-linkbutton" data-options="iconCls:'icon-ok', plain:true, text:'获取'"></a>
+                    <input id="txt_radioValue" class="easyui-textbox"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        $(function () {
+            $("#btn_getRadionValue").on('click', getRadioValue)
+        });
+
+        function getRadioValue() {
+            var radioValue = $("input[name='certType'][checked]").val();
+            $("#txt_radioValue").textbox('setValue', radioValue);
+        }
+
+        //设置值
+        function setRadioValue() {
+
+        }
+    </script>
+</body>
+</html>

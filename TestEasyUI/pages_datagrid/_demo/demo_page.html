@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+</head>
+<body>
+    <h3>Demo Page</h3>
+    <hr/>
+    <div id="mainTabs" class="easyui-tabs" style="width: 4500px" >
+        <div id="tab1" title="员工工资表">
+            <table id="empSalaryTable" class="easyui-datagrid"
+                   data-options="   singleSelect: true,
+                                        pagination: true,
+                                        title: '员工工资表',
+                                        iconCls: 'icon-filter',
+                                        rownumbers: true,
+                                        loadMsg:'正在加载数据，请稍等。。。'
+                                    ">
+                <thead>
+                <tr>
+                    <th data-options="field:'ck'"></th>
+                    <th rowspan="2" data-options="field:'id', hidden:true, width:60">工资表ID</th>
+                    <th rowspan="2" data-options="field:'empId', hidden:true, width:60">员工ID</th>
+                    <th rowspan="2" data-options="field:'number', width:60, align:'center'">工号</th>
+                    <th rowspan="2" data-options="field:'proConstruUnitName', width:100, align:'center'">部门</th>
+                    <th rowspan="2" data-options="field:'name', width:60, align:'center'">姓名</th>
+                    <th rowspan="2" data-options="field:'idCard', width:150, align:'center'">身份证号</th>
+                    <th rowspan="2" data-options="field:'salaryPeriod', width:100, align:'center', editor:{type:'textbox', options:{required:false}} ">月份</th>
+                    <th rowspan="2" data-options="field:'attendanceDays', width:100, align:'center', editor:'textbox' ">应出勤天数</th>
+                    <th rowspan="2" data-options="field:'actualAttendanceDays', width:100, align:'center', editor:'textbox'">实际出勤天数</th>
+                    <th rowspan="2" data-options="field:'casualLeaveDays', width:100, align:'center', editor:'textbox'">事假天数</th>
+                    <th rowspan="2" data-options="field:'sickLeaveDays', width:100, align:'center', editor:'textbox'">病假天数</th>
+                    <th rowspan="2" data-options="field:'overtimeDays', width:100, align:'center', editor:'textbox'">加班/值班天数</th>
+                    <th rowspan="2" data-options="field:'paidVacationDays', width:100, align:'center', editor:'textbox'">带薪假</th>
+                    <th colspan="6" data-options="align:'center'">工资部分</th>
+                    <th colspan="10" data-options="align:'center'">工资性补贴</th>
+                    <th colspan="4" data-options="align:'center'">福利补贴</th>
+                    <th rowspan="2" data-options="field:'bonus', width:100, align:'center', editor:'textbox'">奖金</th>
+                    <th rowspan="2" data-options="field:'welfare', width:100, align:'center', editor:'textbox'">福利费</th>
+                    <th rowspan="2" data-options="field:'total', width:100, align:'center'">合计</th>
+                    <th colspan="10" data-options="align:'center'">应扣/代扣工资</th>
+                    <th colspan="3" data-options="align:'center'">其他扣款项</th>
+                    <th rowspan="2" data-options="field:'takeHomePay', width:100, align:'center'">实发工资</th>
+                    <th rowspan="2" data-options="field:'_operate', width:180, align:'center',formatter:fmtOper">操作</th>
+                </tr>
+                    <tr>
+                        <th data-options="field:'basicSalary', width:70, align:'center', editor:'textbox'">基本工资</th>
+                        <th data-options="field:'performanceSalary', width:70, align:'center', editor:'textbox'">绩效奖金</th>
+                        <th data-options="field:'otherRetroactiveSalary', width:70, align:'center', editor:'textbox'">其他补发</th>
+                        <th data-options="field:'delayedOvertimeSalary', width:70, align:'center', editor:'textbox'">延时加班费</th>
+                        <th data-options="field:'overtimeSalary', width:90, align:'center', editor:'textbox'">加班/值班费</th>
+                        <th data-options="field:'otherSalary', width:70, align:'center', editor:'textbox'">其他</th>
+
+                        <th data-options="field:'seviceLenthSubsidy', width:70, align:'center', editor:'textbox'">工龄工资</th>
+                        <th data-options="field:'profTitleSubsidy', width:70, align:'center', editor:'textbox'">学历职称</th>
+                        <th data-options="field:'profQualificSubsidy', width:70, align:'center', editor:'textbox'">职业资格</th>
+                        <th data-options="field:'constructSubsidy', width:70, align:'center', editor:'textbox'">施工津贴</th>
+                        <th data-options="field:'communicationSubsidy', width:70, align:'center', editor:'textbox'">通讯费</th>
+                        <th data-options="field:'vehicleSubsidy', width:70, align:'center', editor:'textbox'">车补</th>
+                        <th data-options="field:'trafficeSubsidy', width:70, align:'center', editor:'textbox'">交通补助</th>
+                        <th data-options="field:'fullAttendenceSubsidy', width:70, align:'center', editor:'textbox'">全勤奖</th>
+                        <th data-options="field:'stationSubsidy', width:70, align:'center', editor:'textbox'">岗位补贴</th>
+                        <th data-options="field:'otherSubsidy', width:70, align:'center', editor:'textbox'">其他</th>
+
+                        <th data-options="field:'housingSubsidy', width:70, align:'center', editor:'textbox'">住房补助</th>
+                        <th data-options="field:'heatingSubsidy', width:75, align:'center', editor:'textbox'">降温取暖费</th>
+                        <th data-options="field:'healthSubsidy', width:70, align:'center', editor:'textbox'">卫生费</th>
+                        <th data-options="field:'onlyChildSubsidy', width:70, align:'center', editor:'textbox'">独生子女费</th>
+
+                        <th data-options="field:'casualLeaveDeduct', width:70, align:'center', editor:'textbox'">事假</th>
+                        <th data-options="field:'sickLeaveDeduct', width:70, align:'center', editor:'textbox'">病假</th>
+                        <th data-options="field:'endowmentInsurance', width:70, align:'center', editor:'textbox'">养老保险</th>
+                        <th data-options="field:'medicalInsurance', width:70, align:'center', editor:'textbox'">医疗保险</th>
+                        <th data-options="field:'unemploymentInsurance', width:70, align:'center', editor:'textbox'">失业保险</th>
+                        <th data-options="field:'commercialInsurance', width:70, align:'center', editor:'textbox'">商业保险</th>
+                        <th data-options="field:'otherSalaryDeduct', width:70, align:'center', editor:'textbox'">其他</th>
+                        <th data-options="field:'housingFund', width:70, align:'center', editor:'textbox'">公积金</th>
+                        <th data-options="field:'individIncomeTax', width:90, align:'center'">个人所得税</th>
+                        <th data-options="field:'lateDeduc', width:90, align:'center', editor:'textbox'">迟到/早退扣款</th>
+
+                        <th data-options="field:'borrowMoney', width:70, align:'center', editor:'textbox'">借支</th>
+                        <th data-options="field:'penaltyMoney', width:70, align:'center', editor:'textbox'">罚款</th>
+                        <th data-options="field:'otherDeductMoney', width:70, align:'center', editor:'textbox'">其他</th>
+                    </tr>
+
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    function fmtOper() {
+        
+    }
+</script>
+</html>

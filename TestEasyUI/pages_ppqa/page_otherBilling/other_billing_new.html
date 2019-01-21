@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Other Billing Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        table {
+            border-collapse:collapse;
+            /*width:100%;*/
+        }
+        caption {
+            text-align:left;
+            font-size:15px;
+            /*padding-bottom:10px;*/
+        }
+        table td,table th {
+            padding:3px;
+            border:1px solid #fff;
+            border-width:0 1px 1px 0;
+        }
+        .noLinkStyle{
+            color:black;
+            text-decoration: none;
+        }
+        a{
+            color:black;
+            text-decoration: none;
+        }
+        a:hover{
+            color:black;
+            text-decoration: none;
+        }
+        a:visited{
+            color:black;
+            text-decoration: none;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+</head>
+<body>
+
+<div id="tb" class="easyui-panel" title="新增开票申请" style="padding:3px;width: 1300px" data-options="iconCls:'icon-add'">
+    <form id="addForm">
+        <div class="easyui-panel" style="padding:5px;margin-bottom: 5px; width: 100%; background:#d5eaf0;" title="基本信息&nbsp;&nbsp;<a class='noLinkStyle' href='javascript:void(0);' id='btn_cal' onclick='calculateTaxInfo()'>计算开票信息</a>">
+            <table cellpadding="10"  width="1000px">
+                <tr>
+                    <td ><span align="right">项目名称:</span></td>
+                    <td><input class="easyui-textbox" type="text" id="b_proName" name="bd.proName" data-options="width:200,editable:false"/>
+                    </td>
+
+                    <td ><div align="right">甲方名称:</div></td>
+                    <td>
+                        <input class="easyui-combobox" id="b_partyAID" name="bd.partyAID"
+                               data-options="prompt:'请选择甲方',valueField:'id', textField:'name',width:200,panelHeight:'120'"/>
+                        <input type="hidden" id="b_partyAName" name="bd.partyAName">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+    </form>
+    <div id="queryWinBb" style="text-align: center">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存开票信息</a>
+    </div>
+</div>
+</body>
+
+<!--/////////////////////////////////////////////////////////////-->
+<script>
+    $(function () {
+        $("#btn_cal").attr('class', 'easyui-linkbutton');
+    })
+    //
+    function calculateTaxInfo(){
+        alert(111);
+    }
+    // 计算所有相关的数据
+    // 为相关的输入框绑定事件
+    //
+    // 数量(月):       easyui-numberbox  name="quantity" id="quantity"
+    // 单价(含税):     easyui-numberbox  name="unitPrice" id="unitPrice"
+    // 税率            easyui-combobox   name="taxRate" id="taxRate"
+    // 金额(不含税):   easyui-numberbox  name="amount" id="amount"
+    // 税额:           easyui-numberbox  name="taxAmount" id="taxAmount"
+    // 价税合计(小写):  easyui-numberbox  name="sumAmount" id="sumAmount"
+    $(function () {
+        $("input",$("#unitPrice").next("span")).blur(function(){
+            $("#sumAmount").numberbox('setValue', '');
+            reCalculateData();
+        })
+        $("input",$("#sumAmount").next("span")).blur(function(){
+            $("#unitPrice").numberbox('setValue', '');
+            reCalculateData();
+        })
+
+    });
+
+    // 重新计算相关的数据
+    function reCalculateData() {
+        var quantity = $("#quantity").numberbox('getValue');
+        var taxRate = $("#taxRate").combobox('getValue');
+        console.log("--->数量:"+quantity+", 税率:"+taxRate);
+        var unitPrice = $("#unitPrice").numberbox('getValue');
+        var sumAmount = $("#sumAmount").numberbox('getValue');
+        console.log("--->单价:"+unitPrice+", 价税合计:"+sumAmount);
+
+        if(!quantity || !taxRate){
+            $.messager.alert("提示", "请填入商品数量和税率", "info");
+            return false;
+        }
+        if(!unitPrice && !sumAmount){
+            $.messager.alert("提示", "请填入单价或价税合计", "info");
+            return false;
+        }
+        //根据单价计算相关数据
+        if(unitPrice){
+            //计算价税合计
+            var taxAndAmt = Number(unitPrice)*Number(quantity);
+            $("#sumAmount").numberbox('setValue', taxAndAmt);
+            //计算金额
+            var amt = Number(taxAndAmt)/(1+Number(taxRate));
+            $("#amount").numberbox('setValue', amt);
+            //税额
+            var taxAmt = taxAndAmt - amt;
+            $("#taxAmount").numberbox('setValue', taxAmt);
+            //根据税额计算附加税
+            reCalculateAddTax(taxAmt);
+            return true;
+        }
+        //根据金额计算
+        if(sumAmount){
+            //计算金额
+            var amt = Number(sumAmount)/(1+Number(taxRate));
+            $("#amount").numberbox('setValue', amt);
+            //计算单价
+            var unitPrc = Number(amt) / Number(quantity);
+            console.log('--->单价为:'+unitPrc);
+            $("#unitPrice").numberbox('setValue', unitPrc);
+            //计算税额
+            var taxAmt = Number(sumAmount) - Number(amt);
+            $("#taxAmount").numberbox("setValue", taxAmt);
+            //根据税额计算附加税
+            reCalculateAddTax(taxAmt);
+            return true;
+        }
+    }
+    //重新计算相关税率
+    // 城市建设维护税 urbanConstructTaxAmount
+    // 教育附加税 eduAdditionTaxAmount
+    // 地方教育附加税 localEduAdditionTaxAmount
+    function reCalculateAddTax(taxAmount) {
+        var urbConTax = Number(taxAmount)*Number(0.07);
+        $("#urbanConstructTaxAmount").numberbox('setValue', urbConTax);
+        var eduAddTax = Number(taxAmount)*Number(0.03);
+        $("#eduAdditionTaxAmount").numberbox('setValue', eduAddTax);
+        var lcEduAddTax = Number(taxAmount)*Number(0.02);
+        $("#localEduAdditionTaxAmount").numberbox('setValue', lcEduAddTax);
+    }
+
+</script>
+</html>

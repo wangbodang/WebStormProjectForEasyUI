@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Common function</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script>
+
+        //设置公共变量
+        var MoneyFormatter = function () {
+            //格式化会计金额数字 子函数1
+            function outputdollars(number) {
+                if (number.length <= 3)
+                    return (number == '' ? '0' : number);
+                else {
+                    var mod = number.length % 3;
+                    var output = (mod == 0 ? '' : (number.substring(0, mod)));
+                    for (i = 0; i < Math.floor(number.length / 3); i++) {
+                        if ((mod == 0) && (i == 0))
+                            output += number.substring(mod + 3 * i, mod + 3 * i + 3);
+                        else
+                            output += ',' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+                    }
+                    return (output);
+                }
+            }
+            //格式化会计金额数字 子函数2
+            function outputcents(amount) {
+                amount = Math.round(((amount) - Math.floor(amount)) * 100);
+                return (amount < 10 ? '.0' + amount : '.' + amount);
+            }
+
+            return {
+                outputmoney : function (number) {
+                    number = number+"";
+                    number = number.replace(/\,/g, "");
+                    if(isNaN(number) || number == "")return "0.00";
+                    number = Math.round(number * 100) / 100;
+                    if (number < 0)
+                        return '-' + outputdollars(Math.floor(Math.abs(number) - 0) + '') + outputcents(Math.abs(number) - 0);
+                    else
+                        return outputdollars(Math.floor(number - 0) + '') + outputcents(number - 0);
+                },
+                removeComma : function (str) {
+                    
+                }
+            }
+        }();
+    </script>
+</head>
+<body>
+    <input type="text" id="box1" size="30"/>
+    <script>
+        $(function () {
+            console.log("Page Loaded!!!!!");
+            var amount = 343434.34
+            $("#box1").val(MoneyFormatter.outputmoney(amount));
+        });
+    </script>
+    <script>
+        /*
+        *
+        ##自动计算合同总金额 -- by wangchao 2018/05/05 ##
+        var totalAmount = 0;
+        $.each(banDatas, function (index, item) {
+        	if(containsParam == "0") {
+        		totalAmount += Number(item.taxAmount);
+        	}
+            totalAmount += Number(item.amount);
+            totalAmount += +Number(item.addSum);
+        })
+        * */
+    </script>
+</body>
+</html>

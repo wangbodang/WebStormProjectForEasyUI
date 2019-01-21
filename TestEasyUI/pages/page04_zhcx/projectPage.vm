@@ -1,0 +1,153 @@
+#set($title="项目信息管理")
+<div id="tb" class="easyui-panel" title="查询" style="padding:3px" data-options="iconCls:'icon-search',collapsible:true">
+    <form id="ff" method="post">
+        <table cellpadding="5">
+            <tr>
+                <td>选择机构:</td>
+                <td>
+                <input class="easyui-combobox" editable="false" id="BlocOrgFirst" name="BlocOrg"
+                       editable="false"
+                       data-options="
+                            url:'/base/getBlocOrganizations',
+                            method:'post',
+                            valueField:'blocOrgNo',
+                            textField:'name',
+                            panelHeight:'120'"></td>
+                <td>项目名称:</td>
+                <td><input class="easyui-textbox" type="text" id="q_projectName" name="q_projectName"/></td>
+                <td>项目地址:</td>
+                <td><input class="easyui-textbox" type="text" id="q_projectAddress" name="q_projectAddress"/></td>
+                <td>项目管理员:</td>
+                <td><input class="easyui-combobox" editable="false" id="q_projectAdmin" name="q_projectAdmin"
+                           editable="false"
+                           data-options="
+                            url:'/base/getProjectAdmin',
+                            method:'post',
+                            valueField:'adminNo',
+                            textField:'name',
+                            panelHeight:'120'">
+                </td>
+                <td align="center" colspan="2">
+                    <a href="javascript:void(0)" class="easyui-linkbutton"  onclick="doSearch()">查询</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">清除</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<table id="tt" class="easyui-datagrid" style="width:auto;height:auto"
+       data-options="
+				singleSelect: false,
+				selectOnCheck:false,
+				checkOnSelect:true,
+				pagination: true,
+##				title: '优惠码列表',
+				toolbar: '#toolbar',
+				iconCls: 'icon-filter',
+				collapsible: true,
+				rownumbers: true,
+				autoSizeColumn:true,
+				fitColumns:true,
+				loadMsg:'正在加载数据，请稍等。。。',
+				url: '/project/ProjectProPage',
+			">
+    <thead >
+    <tr>
+        <th data-options="field:'ck',checkbox:true"></th>
+        <th data-options="field:'dataId',align:'center',hidden:true"></th>
+        <th data-options="field:'ProjectName',align:'center',width:'120'">项目名称</th>
+        <th data-options="field:'ProjectAddress',align:'center',width:'120'">项目地址</th>
+        <th data-options="field:'ProjectLocalAddress',width:120,align:'center'">项目所在地</th>
+        <th data-options="field:'ProjectManager',width:80,align:'center'">项目管理员</th>
+        <th data-options="field:'TaxType',width:80,align:'center'">计税方法</th>
+        <th data-options="field:'CreateTime',width:80,align:'center',formatter:dateFmatter">创建时间</th>
+        <th data-options="field:'createby',align:'center',width:'80'">创建人</th>
+        <th data-options="field:'_operate',width:130,align:'center',formatter:formatOper">操作</th>
+    </tr>
+    </thead>
+</table>
+<div id="toolbar">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="projectAdd()">添加</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-man" plain="true" onclick="appointManager()">指派管理员</a>
+</div>
+
+<div id="appointWin" class="easyui-dialog" style="width:500px;height:150px"
+     data-options="title:'指派管理员',buttons:'#bb',modal:true,closed:true">
+    <div>
+        <table cellpadding="10" width="100%">
+            <tr>
+                <td><div align="right">项目名称:</div></td>
+                <td width="85%"><div align="left">
+                    <input class="easyui-textbox"  style="width: 300px" type="text" id="q_projectName" name="q_projectName"/>
+                </div></td>
+            </tr>
+            <tr>
+                <td><div align="right">原管理员:</div></td>
+                <td><div align="left">
+                    <input class="easyui-textbox"  width="150" type="text" id="q_projectName" value="超级管理员" name="q_projectName"/>
+                </div></td>
+            </tr>
+            <tr>
+                <td width="15%"><div align="right">项目管理员:</div></td>
+                <td><div align="left">
+                    <input class="easyui-combobox" editable="false" id="q_projectAdmin" name="q_projectAdmin"
+                           data-options="
+                            url:'/base/getProjectAdmin',
+                            method:'post',
+                            valueField:'adminNo',
+                            textField:'name',
+                            panelHeight:'120'">
+                </div></td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+<div id="bb">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-save">Save</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick=" $('#appointWin').window('close');">Close</a>
+</div>
+
+<script type="text/javascript">
+
+    function formatOper(val,row,index){
+        var _operate ='<input type="button" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="toquery('+row.id+','+index+')" value="查看"/>' + ' '+
+                '<input type="button" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="toComplete('+row.id+','+index+','+row.status+')" value="已竣工"/>'
+        return _operate;
+    }
+    function projectAdd() {
+        window.location.href="/project/ProjectAdd";
+    }
+    function appointManager() {
+        $('#appointWin').window('open');
+    }
+
+    function excelExport_MaCode(){
+        window.location.href="/sales/excel/exportExcelMaCode.jhtm";
+//        document.form.submit();
+    }
+
+    function doSearch(){
+        $('#tt').datagrid('load',{
+            name: $("input[name='name']").val(),
+            macode: $("input[name='macode']").val(),
+            amount: $("input[name='amount']").val(),
+            type: $("input[name='type']").val(),
+            starttime: $("input[name='starttime']").val(),
+            endtime: $("input[name='endtime']").val(),
+            createtime_start:$("input[name='createtime_start']").val(),
+            createtime_end: $("input[name='createtime_end']").val(),
+            shopid: $("input[name='shopid']").val(),
+            terminal: $("input[name='terminal']").val(),
+        });
+    }
+    function clearForm(){
+        $("#ff input").val("");
+    }
+
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table demo</title>
+    <style>
+        table{
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+        td{
+            border:1px solid black;
+        }
+        th{
+            border:1px solid black;
+        }
+    </style>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>XXX</th>
+                <th>YYY</th>
+                <th colspan="3">ZZZ</th>
+            </tr>
+            <tr>
+                <th>aaa</th>
+                <th>bbb</th>
+                <th>ccc</th>
+                <th>ddd</th>
+                <th>eee</th>
+            </tr>
+            <tr>
+                <th>aaa</th>
+                <th>bbb</th>
+                <th>ccc</th>
+                <th colspan="2">TTT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>mmmm</td>
+                <td>mmmm</td>
+                <td>mmmm</td>
+                <td>mmmm</td>
+                <td>mmmm</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead >
+            <tr>
+                <th rowspan="3" data-options="field:'ck',checkbox:true"></th>
+                <th rowspan="3" data-options="field:'JGID',align:'center',hidden:true"></th>
+                <th rowspan="3" data-options="field:'proName',align:'center',width:'220'">机构名称</th>
+                <th rowspan="3" data-options="field:'proName',align:'center',width:'220'">项目名称</th>
+                <th colspan="9" data-options="field:'projectAdvance17',align:'center',width:'300'">固定资产</th>
+            </tr>
+            <tr>
+                <th colspan="3" data-options="field:'SE17',align:'center',width:'100'">机械</th>
+                <th colspan="3" data-options="field:'ZS17',align:'center',width:'100'">车辆</th>
+                <th colspan="3" data-options="field:'SE13',align:'center',width:'100'">电子设备</th>
+            </tr>
+            <tr>
+                <th data-options="field:'SE17',align:'center',width:'33'">金额</th>
+                <th data-options="field:'ZS17',align:'center',width:'33'">税额</th>
+                <th data-options="field:'SE13',align:'center',width:'33'">数量</th>
+                <th data-options="field:'SE17',align:'center',width:'33'">金额</th>
+                <th data-options="field:'ZS17',align:'center',width:'33'">税额</th>
+                <th data-options="field:'SE13',align:'center',width:'33'">数量</th>
+                <th data-options="field:'SE17',align:'center',width:'33'">金额</th>
+                <th data-options="field:'ZS17',align:'center',width:'33'">税额</th>
+                <th data-options="field:'SE13',align:'center',width:'33'">数量</th>
+            </tr>
+        </thead>
+    </table>
+    <table id="zzjgjxfp" class="easyui-datagrid" style="width:auto;height:400px;">
+        <thead >
+        <tr>
+            <th rowspan="3" data-options="field:'ck',checkbox:true"></th>
+            <th rowspan="3" data-options="field:'JGID',align:'center',hidden:true"></th>
+            <th rowspan="3" data-options="field:'proName',align:'center',width:'220'">机构名称</th>
+            <th rowspan="3" data-options="field:'proName',align:'center',width:'220'">项目名称</th>
+            <th colspan="9" data-options="field:'projectAdvance17',align:'center',width:'297'">固定资产</th>
+        </tr>
+        <tr>
+            <th colspan="3" data-options="align:'right',width:'99'">机械</th>
+            <th colspan="3" data-options="align:'right',width:'99'">车辆</th>
+            <th colspan="3" data-options="align:'right',width:'99'">电子设备</th>
+        </tr>
+        <tr>
+            <th data-options="field:'SE17',align:'center',width:'33'">金额</th>
+            <th data-options="field:'ZS17',align:'center',width:'33'">税额</th>
+            <th data-options="field:'SE13',align:'center',width:'33'">数量</th>
+            <th data-options="field:'SE17',align:'center',width:'33'">金额</th>
+            <th data-options="field:'ZS17',align:'center',width:'33'">税额</th>
+            <th data-options="field:'SE13',align:'center',width:'33'">数量</th>
+            <th data-options="field:'SE17',align:'center',width:'33'">金额</th>
+            <th data-options="field:'ZS17',align:'center',width:'33'">税额</th>
+            <th data-options="field:'SE13',align:'center',width:'33'">数量</th>
+        </tr>
+        </thead>
+    </table>
+</body>
+</html>

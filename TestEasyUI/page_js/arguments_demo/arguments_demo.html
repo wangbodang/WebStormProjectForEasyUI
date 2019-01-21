@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arguments Demo</title>
+
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+    <h3>Arguments Demo</h3>
+    <hr/>
+    <div style="border: 1px solid aquamarine; margin:40px auto; width:40%; height: 500px; padding:12px;">
+        <p>Test Callee
+            <a id="btn_test" class="easyui-linkbutton" data-options="text:'Click For Test Callee'"></a>
+        </p>
+        <p>Test Caller
+            <a  onclick="testCaller();" class="easyui-linkbutton" data-options="text:'Click For Test Caller'"></a>
+        </p>
+        <p><span id="msg_span"></span></p>
+    </div>
+<script>
+    $(function () {
+        $("#btn_test").on('click', test);
+    });
+
+    function test() {
+        $("#msg_span").text("Test Content");
+        console.log(trueFac(10));
+        console.log("此时应该为 0 - "+fac(10));
+    }
+
+    function fac(num){
+        if(num <= 1){ //0的阶乘也是1
+            return 1;
+        }
+        else{
+            return num*arguments.callee(num-1);
+        }
+    }
+    var trueFac = fac;
+    fac = function(num){
+        console.log("fook!");
+        return 0;
+    };
+    
+    ///////////////////////////////////////
+    function testCaller() {
+        console.log("\n----------------\nTest Caller!")
+        outer();
+    }
+
+    function outer(){
+        inner(8, 'schema');
+    }
+    function inner(a, b){
+        console.log(inner.caller);
+        console.log("参数个数为 : "+arguments.length);
+        console.log(arguments.propertyIsEnumerable());
+    }
+
+</script>
+</body>
+</html>

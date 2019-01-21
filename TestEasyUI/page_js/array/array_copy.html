@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Copy Demo</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+    <input class="easyui-textbox" id="reason">
+    <span> - </span>
+    <input class="easyui-textbox" id="reasonStr">
+    <br/>
+    <a class="easyui-linkbutton" onclick="getReasonStr()" data-options="iconCls:'icon-ok', text:'ClickMe'"></a>
+    <br/>
+    <a class="easyui-linkbutton" onclick="ArrayCopy()" data-options="iconCls:'icon-ok', text:'ArrayCopy'"></a>
+<script>
+
+    $(function () {
+
+
+    })
+
+    var reasonArr = undefined;
+    function getReasonStr() {
+        var reasonValue = $("#reason").textbox('getValue');
+        if(!reasonValue){
+            $.messager.alert('提示', '没有输入值', 'info');
+            return false;
+        }
+        if(typeof reasonArr == 'undefined'){
+            //console.log('--->reasonArr is undefined');
+            var url = "rollOutReason.json";
+            $.ajaxSettings.async = false;
+            $.get(url, function (data) {
+                reasonArr = data;
+            });
+            $.ajaxSettings.async = true;
+        }
+        console.log('--->reasonArr长度为 : '+reasonArr.length);
+        var reasonText = "xxx";
+        $.each(reasonArr, function (index, item) {
+            console.log("--->item : "+JSON.stringify(item));
+            if(item.v == reasonValue){
+
+                reasonText = item.t;
+                return false;
+            }
+        })
+        if(reasonText){
+            $("#reasonStr").textbox('setValue', reasonText);
+        }
+    }
+
+    function ArrayCopy() {
+        var arr1 = [1, 2, 3, 'a', 'b', 'c'];
+        var arr2 = undefined;
+        //arr2 = arr1;
+        /* 复制数组 方法1 */
+        //arr2 = arr1.slice();
+        /* 复制数组 方法2 */
+        //arr2 = arr1.concat();
+        /* 复制数组 方法3 */
+        arr2 = [];
+        for(var i=0;i<arr1.length;i++){
+            arr2[i] = arr1[i];
+        }
+        printArr(arr1)
+        printArr(arr2)
+        arr2[3] = 'ef';
+        printArr(arr1)
+        printArr(arr2)
+    }
+    function printArr(arr) {
+        console.log('---> '+arr);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Datagrid</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            console.log("在IE里看到这条信息，证明IE可以使用Console.log()");
+        })
+        function btn1_click() {
+            $.messager.confirm('消息',"保存成功，是否跳转到列表页？",function(r){
+                if(r){
+                    $.messager.alert("Msg", "FOO");  //跳转到项目查询页面
+                }else{
+                    alert("Too!");
+                }
+            });
+        }
+        $(function () {
+            
+        })
+    </script>
+</head>
+<body>
+    <h3>Test DataGrid</h3>
+    <hr/>
+    <table id="dg">
+    </table>
+    <div id="dgToolBar">
+        <a class="easyui-linkbutton" onclick="btn1_click();">ClickMe</a>
+    </div>
+</body>
+</html>

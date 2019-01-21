@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>申报附表1</title>
+    <style>
+        table{
+            border: 1px solid black;
+            border-collapse:collapse;
+        }
+        td{
+            border: 1px solid black;
+            padding :8px;
+            text-align:center;
+        //width: 10px;
+        }
+        .bluebgcolor{
+            background-color:rgb(200,216,250);
+        }
+        .txtCenter{
+            text-align:center;
+        }
+        .txtLeft{
+            text-align:left;
+        }
+        .graybgcolor{
+            background-color:rgb(192,192,192);
+        }
+        .txtBlueColor{
+            color:blue;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#dataTable').on('dblclick','td',function(){
+                //console.info($(this).text());
+                var oldVal = $(this).text();
+                var input = "<input style='width:90px;height:25px;margin:0px;padding:0px;' type='text' id='tmpId' value='" + oldVal + "' >";
+                $(this).text('');
+                $(this).append(input);
+                $('#tmpId').focus();
+                $('#tmpId').blur(function(){
+                    if($(this).val() != ''){
+                        oldVal = $(this).val();
+                    }
+                    //closest：是从当前元素开始，沿Dom树向上遍历直到找到已应用选择器的一个匹配为止。
+                    $(this).closest('td').text(oldVal);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <p style="text-align:center; font-size:36px;">增值税纳税申报表附列资料(一)</p >
+    <br/>
+    <p>税款所属期：2018年01月01日 至 2019年01月31日</p >
+    <br/>
+    <p>纳税人名称：（公章）河南四建股份有限公司</p >
+    <br/>
+    <table id="dataTable" style="width: 1700px" align="center" border="1">
+        <thead frozen="true">
+        <tr align="center" style="background-color:rgb(200,216,250);">
+            <td colspan="4" rowspan="3" scope="col">项目及栏次</td>
+            <td colspan="2" scope="col">开具增值税专用发票</td>
+            <td colspan="2" scope="col">开具其他发票</td>
+            <td colspan="2" scope="col">未开具发票</td>
+            <td colspan="2" scope="col">纳税检查调整</td>
+            <td colspan="3" scope="col">合计</td>
+            <td rowspan="2" scope="col" width="140px">服务、不动产和无形资产扣除项目本期实际扣除金额</td>
+            <td colspan="2" scope="col">扣除后</td>
+        </tr>
+        <tr align="center" style="background-color:rgb(200,216,250);">
+            <td width="100px">销售额</td>
+            <td width="100px">销项(应纳)税额</td>
+            <td width="100px">销售额</td>
+            <td width="100px">销项(应纳)税额</td>
+            <td width="100px">销售额</td>
+            <td width="100px">销项(应纳)税额</td>
+            <td width="100px">销售额</td>
+            <td width="100px">销项(应纳)税额</td>
+            <td width="100px">销售额</td>
+            <td width="100px">销项(应纳)税额</td>
+            <td width="100px">价税合计</td>
+            <td width="100px">含税(免税)销售额</td>
+            <td width="100px">销项(应纳)税额</td>
+        </tr>
+        <tr align="center" style="background-color:rgb(200,216,250);">
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9=1+3+5+7</td>
+            <td>10=2+4+6+8</td>
+            <td>11=9+10</td>
+            <td>12</td>
+            <td>13=11-12</td>
+            <td width="200px">14=13÷(100%+税率或征收率)×税率或征收率</td>
+        </tr>
+        <tr>
+            <td rowspan="8" scope="row" align="center" style="background-color:rgb(200,216,250);">一、<br/>一般<br/>计税<br/>方法<br/>计税</td>
+            <td rowspan="6"  style="background-color:rgb(200,216,250);" align="center" width="60px">全部征税项目</td>
+            <td  style="background-color:rgb(200,216,250);" align="center" width="330px">17%税率的货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">1</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">17%税率的服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">2</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">13%税率</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">3</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">11%税率的货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">4a</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">11%税率的服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">4b</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">6%税率</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">5</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td rowspan="2"  style="background-color:rgb(200,216,250);" align="center">其中即征即退项目</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">即征即退货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">6</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td  style="background-color:rgb(200,216,250);" align="center">即征即退服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">7</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td rowspan="11" scope="row"  style="background-color:rgb(200,216,250);" align="center">二、<br/>简易<br/>计税<br/>方法<br/>计税</td>
+            <td rowspan="9"  style="background-color:rgb(200,216,250);" align="center">全部征税项目</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">6%征收率</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">8</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">5%征收率的货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">9a</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">5%征收率的服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">9b</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">4%征收率</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">10</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">3%征收率的货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">11</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td  style="background-color:rgb(200,216,250);" align="center">3%征收率的服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">12</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td  style="background-color:rgb(200,216,250);" align="center">预征率%</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">13a</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr class="graybgcolor">
+        <tr class="graybgcolor">
+            <td  style="background-color:rgb(200,216,250);" align="center">预征率%</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">13b</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr class="graybgcolor">
+        <tr class="graybgcolor">
+            <td  style="background-color:rgb(200,216,250);" align="center">预征率%</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">13c</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td rowspan="2"  style="background-color:rgb(200,216,250);" align="center">其中即征即退项目</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">即征即退货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">14</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td  style="background-color:rgb(200,216,250);" align="center">即征即退应税服务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">15</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td rowspan="2" scope="row"  style="background-color:rgb(200,216,250);" align="center">三、<br/>免抵<br/>退税</td>
+            <td colspan="2"  style="background-color:rgb(200,216,250);" align="center">货物及加工修理修配劳务</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">16</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td colspan="2"  style="background-color:rgb(200,216,250);" align="center">服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">17</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td rowspan="2" scope="row"  style="background-color:rgb(200,216,250);" align="center">四、<br/>免税</td>
+            <td colspan="2"  style="background-color:rgb(200,216,250);" align="center">服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">18</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="graybgcolor">
+            <td colspan="2"  style="background-color:rgb(200,216,250);" align="center">服务、不动产和无形资产</td>
+            <td  style="background-color:rgb(200,216,250);" align="center">19</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        </thead>
+    </table>
+</body>
+</html>

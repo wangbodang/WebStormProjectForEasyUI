@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Other Billing Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        table {
+            border-collapse:collapse;
+            /*width:100%;*/
+        }
+        caption {
+            text-align:left;
+            font-size:15px;
+            /*padding-bottom:10px;*/
+        }
+        table td,table th {
+            padding:3px;
+            border:1px solid #fff;
+            border-width:0 1px 1px 0;
+        }
+        .dialog-button { padding: 5px; text-align: center; }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+</head>
+<body>
+<div id="queryWin" class="easyui-panel" style="background:#d5eaf0;" data-options="iconCls:'icon-add',title:'新增其他开票申请',style:{borderWidth:0,position:'absolute'}, width:880, height:500">
+    <form id="addform">
+        <table cellspacing="10" width="100%">
+            <caption>开票基本信息</caption>
+            <!--<tr>
+                <td ><div align="right">申请发票类型:</div></td>
+                <td><input class="easyui-combobox" editable="false" id="invoiceType" name="invoiceType"
+                           editable="false"
+                           data-options=" prompt:'请选择发票类型',valueField:'v',width:200,textField:'t',panelHeight:'120',
+                                           required:true, data: [{t: '增值税普通发票',v: '00'},{t: '增值税专用发票',v: '01'},{t: '增值税电子普通发票',v: '10'}]">
+                </td>
+                <td><div align="right">业务类型:</div></td>
+                <td>
+                    <input class="easyui-combobox" editable="false" id="businessType" name="businessType"
+                           editable="false"
+                           data-options="prompt:'请选择业务类型',valueField:'v',width:200,textField:'t',panelHeight:'120',
+                                            data: [{t:'房屋租赁',v:'0001'},{t:'业务培训',v:'0002'}]">
+                </td>
+            </tr>
+            <tr>
+                <td><div align="right">付款(或租赁房信息):</div></td>
+                <td><input class="easyui-textbox" disabled type="text" name="moreInfo" id="moreInfo" data-options="width:200"/></td>
+                <td><div align="right">货物或应税劳务名称:</div></td>
+                <td><input class="easyui-textbox" type="text" id="commodityName" name="commodityName" data-options="width:200,required:true"></input></td>
+            </tr>-->
+
+
+            <tr>
+
+
+            </tr>
+            <tr>
+
+
+            </tr>
+            <tr>
+
+
+            </tr>
+            <tr>
+
+
+            </tr>
+            <tr>
+
+
+            </tr>
+
+            <tr>
+
+
+            </tr>
+
+
+
+        </table>
+    </form>
+
+</div>
+
+
+
+
+<div id="WinQuery" class="easyui-dialog" style="width:770px;height:320px"  data-options="title:'甲方及开户行信息',buttons:'#bbq',resizable:true,modal:true,closed:true">
+    <table class="easyui-datagrid" width="100%" id="q_bankInfoDetail">  </table>
+</div>
+</div>
+</body>
+<script>
+    // 计算所有相关的数据
+    // 为相关的输入框绑定事件
+    //
+    // 数量(月):       easyui-numberbox  name="quantity" id="quantity"
+    // 单价(含税):     easyui-numberbox  name="unitPrice" id="unitPrice"
+    // 税率            easyui-combobox   name="taxRate" id="taxRate"
+    // 金额(不含税):   easyui-numberbox  name="amount" id="amount"
+    // 税额:           easyui-numberbox  name="taxAmount" id="taxAmount"
+    // 价税合计(小写):  easyui-numberbox  name="sumAmount" id="sumAmount"
+    $(function () {
+        $("input",$("#unitPrice").next("span")).blur(function(){
+            $("#sumAmount").numberbox('setValue', '');
+            reCalculateData();
+        })
+        $("input",$("#sumAmount").next("span")).blur(function(){
+            $("#unitPrice").numberbox('setValue', '');
+            reCalculateData();
+        })
+
+    });
+
+    // 重新计算相关的数据
+    function reCalculateData() {
+        var quantity = $("#quantity").numberbox('getValue');
+        var taxRate = $("#taxRate").combobox('getValue');
+        console.log("--->数量:"+quantity+", 税率:"+taxRate);
+        var unitPrice = $("#unitPrice").numberbox('getValue');
+        var sumAmount = $("#sumAmount").numberbox('getValue');
+        console.log("--->单价:"+unitPrice+", 价税合计:"+sumAmount);
+
+        if(!quantity || !taxRate){
+            $.messager.alert("提示", "请填入商品数量和税率", "info");
+            return false;
+        }
+        if(!unitPrice && !sumAmount){
+            $.messager.alert("提示", "请填入单价或价税合计", "info");
+            return false;
+        }
+        //根据单价计算相关数据
+        if(unitPrice){
+            //计算价税合计
+            var taxAndAmt = Number(unitPrice)*Number(quantity);
+            $("#sumAmount").numberbox('setValue', taxAndAmt);
+            //计算金额
+            var amt = Number(taxAndAmt)/(1+Number(taxRate));
+            $("#amount").numberbox('setValue', amt);
+            //税额
+            var taxAmt = taxAndAmt - amt;
+            $("#taxAmount").numberbox('setValue', taxAmt);
+            //根据税额计算附加税
+            reCalculateAddTax(taxAmt);
+            return true;
+        }
+        //根据金额计算
+        if(sumAmount){
+            //计算金额
+            var amt = Number(sumAmount)/(1+Number(taxRate));
+            $("#amount").numberbox('setValue', amt);
+            //计算单价
+            var unitPrc = Number(amt) / Number(quantity);
+            console.log('--->单价为:'+unitPrc);
+            $("#unitPrice").numberbox('setValue', unitPrc);
+            //计算税额
+            var taxAmt = Number(sumAmount) - Number(amt);
+            $("#taxAmount").numberbox("setValue", taxAmt);
+            //根据税额计算附加税
+            reCalculateAddTax(taxAmt);
+            return true;
+        }
+    }
+    //重新计算相关税率
+    // 城市建设维护税 urbanConstructTaxAmount
+    // 教育附加税 eduAdditionTaxAmount
+    // 地方教育附加税 localEduAdditionTaxAmount
+    function reCalculateAddTax(taxAmount) {
+        var urbConTax = Number(taxAmount)*Number(0.07);
+        $("#urbanConstructTaxAmount").numberbox('setValue', urbConTax);
+        var eduAddTax = Number(taxAmount)*Number(0.03);
+        $("#eduAdditionTaxAmount").numberbox('setValue', eduAddTax);
+        var lcEduAddTax = Number(taxAmount)*Number(0.02);
+        $("#localEduAdditionTaxAmount").numberbox('setValue', lcEduAddTax);
+    }
+
+</script>
+</html>

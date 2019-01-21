@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Datagrid</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+    <style>
+        table{
+            border-collapse: collapse;
+            border:1px solid #2aabd2;
+        }
+        td{
+            border:1px solid #2aabd2;
+        }
+        .leftTd{
+            width:180px;
+            text-align: right;
+            padding-right:4px;
+        }
+        .rightTd{
+            width:280px;
+            text-align: left;
+            padding-left:8px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin:50px auto; width:45%;">
+        <p>Test TextBox</p>
+        <form id="searchForm">
+            <table>
+                <tr>
+                    <td class="leftTd">
+                        <span>特殊发票类型 : </span>
+                    </td>
+                    <td class="rightTd">
+                        <!-- readonly disabled editable -->
+                        <!-- editable:false, -->
+                        <input id="myTextbox" class="easyui-textbox"
+                               name="myTextboxName"
+
+                               style="width:200px; height:auto;"
+                               data-options="panelWidth:200, panelHeight:'auto',
+                                             readonly:true,
+                                             disabled:true,
+                                             valueField:'v', textField:'t'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxEditable(0);">setEditableFasle</a>
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxEditable(1);">setEditableTrue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxReadonly(0);">setReadOnlyFalse</a>
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxReadonly(1);">setReadOnlyTrue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxDisabled(0);">setDisabledFalse</a>
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxDisabled(1);">setDisabledTrue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="setTboxValue();">SetValue</a><br/>
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="getTboxValue();">GetValue</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="reloadThisPage();">Refresh</a>
+                    </td>
+                    <td class="rightTd">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="getSearchFormValue();">getSearchFormValue</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+    <script>
+        function setTboxEditable(flag){
+            if(flag){
+                $("#myTextbox").textbox({editable:true});
+            }else{
+                $("#myTextbox").textbox({editable:false});
+            }
+
+        }
+        function setTboxReadonly(flag){
+            if(flag){
+                $("#myTextbox").textbox({readonly:true});
+            }else{
+                $("#myTextbox").textbox({readonly:false});
+            }
+        }
+        function setTboxDisabled(flag){
+            if(flag){
+                $("#myTextbox").textbox({disabled:true});
+            }else{
+                $("#myTextbox").textbox({disabled:false});
+            }
+        }
+        function getSearchFormValue(){
+            var paramStr = $("#searchForm").serialize();
+            console.log("---> 查询参数为 : "+paramStr);
+        }
+
+
+        $(function () {
+           
+        });
+        function setTboxValue() {
+            //$("#myTextbox").combobox('setValue', 'XXX');
+            /*$("#myTextbox").combobox('setValue', 'XXX');
+            $("#myTextbox").combobox('setText', 'TEXT');*/
+
+            $("#myTextbox").textbox('setValue', 'XXX');
+            $("#myTextbox").textbox('setText', 'TEXT');
+
+
+            //$("#myTextbox").combobox('setValue', 'ss');
+            //$("#myTextbox").combobox('select', 'ss');
+        }
+        function getTboxValue() {
+            var myCbValue = $("#myTextbox").textbox('getValue');
+            var myCbText = $("#myTextbox").textbox('getText');
+            console.log("值为:"+myCbValue+', 文本为:'+myCbText);
+        }
+        function reloadThisPage() {
+            window.location.reload();
+        }
+    </script>
+<!--   -->
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Demo Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+        body{
+            background-color: #99cdff;
+        }
+    </style>
+    <style>
+        table{
+            border: 1px solid #f9f9f9;
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid #f9f9f9;
+            padding:8px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+</head>
+<body>
+    <div class="easyui-panel" id="panel01" data-options="width:500, height:300, title:'Eoo'">
+        <table>
+            <tr>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="openPanel();"
+                    >打开Panel</a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="closePanel();"
+                       >关闭Panel</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="expandPanel();" >展开Panel</a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="collapsePanel();"
+                    >折叠Panel</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="showPanelInfo();"
+                    >显示信息</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="exchangePanel();"
+                    >切换面板</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="javascript:void(0);"
+                       class="easyui-linkbutton"
+                       data-options="iconCls:'icon-ok'"
+                       onclick="resizePanel();"
+                    >调整尺寸</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="easyui-panel" id="panel02" data-options="width:200, height:100, title:'Foo'">
+    </div>
+    <div class="easyui-panel" id="panel03" data-options="width:400, height:200, title:'Goo'">
+    </div>
+<script>
+    function resizePanel() {
+        var width = $("#panel03").panel('options')['width'];
+        if(width>400){
+            $("#panel03").panel({width:400});
+        }else{
+            $("#panel03").panel({width:700});
+        }
+    }
+    function closePanel() {
+        $("#panel02").panel('close');
+    }
+    function openPanel() {
+        $("#panel02").panel('open');
+    }
+    function expandPanel() {
+        $("#panel02").panel('expand');
+    }
+    function collapsePanel() {
+        $("#panel02").panel('collapse');
+    }
+    var showPanel = 1;
+    function showPanelInfo() {
+        var panelOptions = $("#panel02").panel('options');
+        console.log("--->"+JSON.stringify(panelOptions));
+
+
+        return;
+        if(showPanel){
+            $("#panel02").hide(0, function () {
+                showPanel = 0;
+            });
+        }else{
+            $("#panel02").show(0, function () {
+                showPanel = 1;
+            });
+        }
+
+    }
+    function exchangePanel() {
+        /*var closed = $("#panel02").panel('options')['closed'];
+        console.log('--->'+closed);
+        if(closed){
+            //$("#panel02").panel('open');
+            $("#panel02").panel({'closed':false});
+        }else{
+            //$("#panel02").panel('close');
+            $("#panel02").panel({'closed':true});
+        }*/
+
+        var collapsed = $("#panel02").panel('options')['collapsed'];
+        if(collapsed){
+            //$("#panel02").panel({'collapsed':false});
+            $("#panel02").panel('expand');
+        }else{
+            //$("#panel02").panel({'collapsed':true});
+            $("#panel02").panel('collapse');
+        }
+    }
+</script>
+</body>
+</html>

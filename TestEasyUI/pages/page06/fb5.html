@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>附表5</title>
+    <style type="text/css">
+        body{
+            font-family:"SimSun";
+            font-size:12px;
+        }
+        table{
+            border: 1px solid black;
+            border-collapse:collapse;
+
+        }
+        td{
+            border: 1px solid black;
+            padding:8px;
+            text-align:right;
+            width: 130px;
+            height:16px;
+        }
+        .bluebgcolor{
+            background-color:white;
+        }
+        .txtCenter{
+            text-align:center;
+        }
+        .txtLeft{
+            text-align:left;
+        }
+        .graybgcolor{
+            background-color:white;
+        }
+        .txtBlueColor{
+            color:white;
+        }
+        .monthLink{
+            margin-left:10px;margin-right: 10px;
+            cursor: pointer;
+        }
+        input{
+            -webkit-appearance:none;
+            -moz-appearance: none;
+            width:90px;
+            height:14px;
+            font-size:12px;
+            border-radius:0;
+            border:0 solid #c8cccf;
+            color:black;
+            margin:0;
+            outline:0;
+        }
+
+        /*style='width:98px;height:20px;margin:0px;padding:0px;'*/
+    </style>
+    <script type="text/javascript" src="../../_jquery/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#fb5table').on('dblclick','.beinput',function(){
+                //console.info($(this).text());
+                var oldVal = $(this).text();
+                var input = "<input type='text' id='tmpId' value='" + oldVal + "' >";
+                $(this).text('');
+                $(this).append(input);
+                $('#tmpId').focus();
+                $('#tmpId').blur(function(){
+                    if($(this).val() != ''){
+                        oldVal = $(this).val();
+                    }
+                    //closest：是从当前元素开始，沿Dom树向上遍历直到找到已应用选择器的一个匹配为止。
+                    $(this).closest('td').text(oldVal);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="width:880px;">
+        <span><<</span>
+        <span class="monthLink">[1]</span>
+        <span class="monthLink">[2]</span>
+        <span class="monthLink">[3]</span>
+        <span class="monthLink">[4]</span>
+        <span class="monthLink">[5]</span>
+        <span class="monthLink">[6]</span>
+        <span class="monthLink">[7]</span>
+        <span class="monthLink">[8]</span>
+        <span class="monthLink">[9]</span>
+        <span class="monthLink">[10]</span>
+        <span class="monthLink">[11]</span>
+        <span class="monthLink">[12]</span>
+        <span>>></span>
+    </div>
+    <div style="width:880px;">
+        <p style="text-align:center; font-size:36px;font-weight: bold;">增值税纳税申报表附列资料(五)</p>
+        <p style="text-align:center; font-size:16px;font-weight: bold;">(不动产分期抵扣计算表)</p>
+        <p>税款所属期:<span>2018年03月01日</span>至<span>2018年03月31日</span></p>
+        <p>纳税人名称:(公章)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;金额单位:元至角分</p>
+        <table style="margin:0 0;" id="fb5table">
+            <tbody>
+                <tr class="bluebgcolor">
+                    <td class="txtCenter" style="">期初待抵扣不动产进项税额</td>
+                    <td class="txtCenter">本期不动产进项税额增加额</td>
+                    <td class="txtCenter">本期可抵扣不动产进项税额</td>
+                    <td class="txtCenter">本期转入的待抵扣不动产进项税额</td>
+                    <td class="txtCenter">本期转出的待抵扣不动产进项税额</td>
+                    <td class="txtCenter">期末待抵扣不动产进项税额</td>
+                   <!-- ##<td>0.00</td>
+                    ##<td>0.00</td>
+                    ##<td>0.00</td>
+                    ##<td>0.00</td>-->
+                </tr>
+                <tr class="bluebgcolor">
+                   <!-- ##<td>0.00</td>
+                    ##<td>0.00</td>-->
+                    <td class="txtCenter" style="">1</td>
+                    <td class="txtCenter">2</td>
+                    <td class="txtCenter">3≤1+2</td>
+                    <td class="txtCenter">4</td>
+                    <td class="txtCenter">5≤1+4</td>
+                    <td class="txtCenter">6=1+2-3+4-5</td>
+                </tr>
+                <tr>
+                    <td class="" style="">0.00</td>
+                    <td class="">0.00</td>
+                    <td class="beinput">0.00</td>
+                    <td class="beinput">0.00</td>
+                    <td class="">0.00</td>
+                    <td class="graybgcolor">0.00</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+</html>

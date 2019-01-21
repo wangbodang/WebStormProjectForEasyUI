@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        });
+    </script>
+</head>
+<body>
+    <h3>DataGrid</h3>
+    <hr/>
+    <div class="easyui-panel" id="mainDiv" data-options="title:'test'">
+        <table id="dg" class="easyui-datagrid"
+               style="width:80%;"
+               data-options="fitColumns:true,
+                             singleSelect:false,
+                             title:'DATAGRID-DEMO-TITLE',
+                             toolbar:'#dgToolbar',
+                             fitColumns:true,
+                             onLoadSuccess:loadSuccessFunc,
+                             loadFilter:dataFilter">
+            <thead>
+                <tr>
+                    <th data-options="field:'', checkbox:true, align:'left', halign:'center', width:40">ID</th>
+                    <th data-options="field:'id', align:'left', halign:'center', width:40">ID</th>
+                    <th data-options="field:'name', align:'left', halign:'center', width:80">Name</th>
+                    <th data-options="field:'age', align:'left', halign:'center', width:40">Age</th>
+                    <th data-options="field:'gender', align:'left', halign:'center', width:40">Gender</th>
+                    <th data-options="field:'hiredate', align:'left', halign:'center', width:80">Hiredate</th>
+                    <th data-options="field:'remark', align:'left', halign:'center', width:100">Remark</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <!-- 表格的工具栏 -->
+    <div id="dgToolbar">
+        <table>
+            <tr>
+                <td><a class="easyui-linkbutton" data-options="text:'click me'" onclick='clickme();'></a></td>
+                <td><a class="easyui-linkbutton" data-options="text:'change column name'" onclick='changeColName();'></a></td>
+            </tr>
+        </table>
+    </div>
+    <!-- 测试 -->
+    <div id="mainDiv2">
+        <span>TEST TEXT</span>
+    </div>
+</body>
+<script>
+
+    //加载数据
+    $(function () {
+        var dataRows = {    total:2,
+                            rows:[{id:11009, name:'xxxxxxx', age:'33', gender:'x', hiredate:'2018-12-26', remark:'Fook002'},
+                                  {id:11001, name:'wangbodang', age:'32', gender:'M', hiredate:'2018-12-20', remark:'Fook001'},
+                                  {id:11002, name:'xieyingdeng', age:'33', gender:'M', hiredate:'2018-12-21', remark:'Fook002'},
+                                  {id:11003, name:'xxxxxxx', age:'33', gender:'x', hiredate:'2018-12-26', remark:'Fook002'},
+                                  {id:11004, name:'xxxxxxx', age:'33', gender:'x', hiredate:'2018-12-26', remark:'Fook002'},
+                                  {id:11005, name:'xxxxxxx', age:'33', gender:'y', hiredate:'2018-12-26', remark:'Fook002'},
+                                  {id:11006, name:'yyyyyy', age:'33', gender:'x', hiredate:'2018-12-23', remark:'Fook002'},
+                                  {id:11007, name:'simachangfeng', age:'13', gender:'F', hiredate:'2018-12-22', remark:'Fook003'}]
+                       };
+       /*var dataRows = [{'id':11001, 'name':'wangbodang', 'age':'32', 'gender':'M', 'hiredate':'2018-12-20', 'remark':'Fook001'}
+                       ];*/
+        $("#dg").datagrid('loadData', dataRows);
+    })
+    
+    //修改文本框
+    function clickme() {
+
+    }
+
+    //过滤掉一些数据
+    function dataFilter(data) {
+        return data;
+    }
+    //
+    function loadSuccessFunc(data) {
+        //console.log("--->"+JSON.stringify(data))
+    }
+
+
+    function changeColName() {
+        //$('#dgg').datagrid("addToolbarItem",[{"text":"xxx"},"-",{"text":"xxxsss","iconCls":"icon-ok"}])
+        console.log('---> 添加内容');
+        $('#dgToolBar').append('<span>fuck</span>');
+    }
+
+    $.extend($.fn.datagrid.methods, {
+        addToolbarItem: function (jq, items) {
+            console.log('---> 添加工具栏项目');
+            return jq.each(function () {
+                var toolbar = $(this).parent().prev("div.datagrid-toolbar");
+                //judge does it include toolbar object
+                //if don't have add one
+                if (toolbar.length == 0) {
+                    toolbar = $("<div class=\"datagrid-toolbar\"><table cellspacing=\"0\" cellpadding=\"0\"><tr></tr></table></div>").insertBefore($(this).parent());
+                }
+
+                var tr = toolbar.find("tr");
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+
+                    var btns = $(this).parent().prev("div.datagrid-toolbar").find("tr>td").children("a");
+
+                    var cbtn = null;
+
+                    btns.each(function () {
+                        var text = null;
+                        text = $(this).data().linkbutton.options.text;
+                        if (text == item.text) {
+                            cbtn = $(this);
+                            text = null;
+                            return false;
+                        } else {
+                            text = null;
+                            return;
+                        }
+                    });
+
+
+                    if (item === "-") {
+                        $("<td><div class=\"datagrid-btn-separator\"></div></td>").appendTo(tr);
+                    } else {
+                        if (cbtn) {
+                            cbtn[0].onclick = eval(item.handler || function () { });
+                            cbtn.css("float", "left").linkbutton($.extend({}, item, { plain: true }));
+                        } else {
+                            var td = $("<td></td>").appendTo(tr);
+                            var tool = $("<a href=\"javascript:void(0)\"></a>").appendTo(td);
+                            tool[0].onclick = eval(item.handler || function () { });
+                            tool.linkbutton($.extend({}, item, { plain: true }));
+                        }
+                    }
+                }
+                toolbar = null;
+            });
+        },
+        removeToolbarItem: function (jq, param) {
+            return jq.each(function () {
+                var btns = $(this).parent().prev("div.datagrid-toolbar").find("tr>td").children("a");
+                var cbtn = null;
+                if (typeof param == "number") {
+                    cbtn = btns.eq(param);
+                } else if (typeof param == "string") {
+                    var text = null;
+                    btns.each(function () {
+                        text = $(this).data().linkbutton.options.text;
+                        if (text == param) {
+                            cbtn = $(this);
+                            text = null;
+                            return;
+                        }
+                    });
+                }
+                if (cbtn) {
+                    var prev = cbtn.prev()[0];
+                    var next = cbtn.next()[0];
+                    if (prev && next && prev.nodeName == "DIV" && prev.nodeName == next.nodeName) {
+                        $(prev).remove();
+                    } else if (next && next.nodeName == "DIV") {
+                        $(next).remove();
+                    } else if (prev && prev.nodeName == "DIV") {
+                        $(prev).remove();
+                    }
+                    cbtn.remove();
+                    cbtn = null;
+
+                    btns = $(this).parent().prev("div.datagrid-toolbar").find("tr>td").children("a");
+                    if (btns.length == 0) {
+                        $(this).parent().prev("div.datagrid-toolbar").remove();
+                    }
+                }
+            });
+        }
+    });
+</script>
+</html>

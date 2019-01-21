@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page03</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <script type="text/javascript" src="page03.js"></script>
+</head>
+<body>
+    <table id="dg"></table>
+    <div id="tb" style="padding:5px;height:auto">
+        <div style="margin-bottom:5px">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+        </div>
+        <div>
+            Date From: <input class="easyui-datebox" style="width:80px">
+            To: <input class="easyui-datebox" style="width:80px">
+            Language:
+            <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+                <option value="java">Java</option>
+                <option value="c">C</option>
+                <option value="basic">Basic</option>
+                <option value="perl">Perl</option>
+                <option value="python">Python</option>
+            </select>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+        </div>
+    </div>
+</body>
+</html>

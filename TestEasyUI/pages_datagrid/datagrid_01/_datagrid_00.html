@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+</head>
+<body>
+    <table id="dg"
+           style="width:80%;">
+        <thead>
+        <tr>
+            <th data-options="field:'', checkbox:true, align:'left', halign:'center', width:40">ID</th>
+            <th data-options="field:'id', align:'left', halign:'center', width:40">ID</th>
+            <th data-options="field:'name', align:'left', halign:'center', width:80">Name</th>
+            <th data-options="field:'age', align:'left', halign:'center', width:40">Age</th>
+            <th data-options="field:'gender', align:'left', halign:'center', width:40">Gender</th>
+            <th data-options="field:'hiredate', align:'left', halign:'center', width:80">Hiredate</th>
+            <th data-options="field:'remark', align:'left', halign:'center', width:100">Remark</th>
+        </tr>
+        </thead>
+    </table>
+<script>
+
+    var toolBar = [{
+                       iconCls: 'icon-edit',
+                       text:'Fuck',
+                       handler: function(){alert('edit')}
+                   },'-',{
+                       iconCls: 'icon-help',
+                       text:'Help',
+                       handler: function(){alert('help')}
+                   },'-',{
+                       text: 'AddBtn',
+                       handler: addBtn,
+                       iconCls: 'icon-add'
+                   },'-',{
+                       text: 'clearBtn',
+                       iconCls: 'icon-clear',
+                       handler:clearBtn
+                   }];
+    var config = {};
+    $(function () {
+        //通过数组定义工具栏
+        config.toolbar = toolBar;
+        $('#dg').datagrid(config);
+        var dataRows = {    total:2,
+            rows:[{id:11009, name:'xxxxxxx', age:'33', gender:'x', hiredate:'2018-12-26', remark:'Fook002'},
+                {id:11001, name:'wangbodang', age:'32', gender:'M', hiredate:'2018-12-20', remark:'Fook001'},
+                {id:11002, name:'xieyingdeng', age:'33', gender:'M', hiredate:'2018-12-21', remark:'Fook002'},
+                {id:11003, name:'xxxxxxx', age:'33', gender:'x', hiredate:'2018-12-26', remark:'Fook002'},
+                {id:11004, name:'xxxxxxx', age:'33', gender:'x', hiredate:'2018-12-26', remark:'Fook002'},
+                {id:11005, name:'xxxxxxx', age:'33', gender:'y', hiredate:'2018-12-26', remark:'Fook002'},
+                {id:11006, name:'yyyyyy', age:'33', gender:'x', hiredate:'2018-12-23', remark:'Fook002'},
+                {id:11007, name:'simachangfeng', age:'13', gender:'F', hiredate:'2018-12-22', remark:'Fook003'}]
+        };
+        /*var dataRows = [{'id':11001, 'name':'wangbodang', 'age':'32', 'gender':'M', 'hiredate':'2018-12-20', 'remark':'Fook001'}
+                        ];*/
+        $("#dg").datagrid('loadData', dataRows);
+    });
+
+    //
+    function addBtn() {
+        //alert(1);
+        toolBar[toolBar.length] = '-';
+        toolBar[toolBar.length] = { text: 'Goo',
+                                    handler: goo,
+                                    plain: false
+                                  };
+        config.toolbar = toolBar;
+        $('#dg').datagrid(config);
+    }
+    function goo() {
+        alert('goo');
+    }
+    function clearBtn() {
+        console.log("---> btn长度为 : "+toolBar.length);
+        toolBar.splice(7,toolBar.length-7);
+        config.toolbar = toolBar;
+        $('#dg').datagrid(config);
+    }
+</script>
+</body>
+</html>

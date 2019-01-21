@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../_css/global.css">
+    <script type="text/javascript" src="../_js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="demo-.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+        });
+
+    </script>
+</head>
+<body>
+   <!-- <form>
+        <button class="mydefault">click me</button>
+
+    </form>-->
+    <div>
+        <select id="sheng" name="sheng" onchange="queryXzqh(2, this);">
+            <option>--请选择省--</option>
+            <option>北京市</option>
+        </select>
+        <select id="shi" name="shi" onchange="queryXzqh(3, this);">
+            <option>--请选择市--</option>
+            <option>崇文区</option>
+        </select>
+        <select id="xian" name="xian" onchange="queryXzqh(4, this);">
+            <option>--请选择县--</option>
+            <option>永定门</option>
+        </select>
+        <select id="xiang" name="xiang" onchange="">
+            <option>--请选择乡--</option>
+        </select>
+        <button id="submit">提交</button>
+    </div>
+    <p id="result"></p>
+</body>
+</html>

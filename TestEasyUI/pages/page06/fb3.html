@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>附表3</title>
+    <style type="text/css">
+        body{
+            font-family:"SimSun";
+            font-size:12px;
+        }
+        table{
+            border: 1px solid black;
+            border-collapse:collapse;
+
+        }
+        td{
+            border: 1px solid black;
+            padding :8px;
+            text-align:right;
+            width: 100px;
+            height:16px;
+        }
+        .bluebgcolor{
+            background-color:white;
+        }
+        .txtCenter{
+            text-align:center;
+        }
+        .txtLeft{
+            text-align:left;
+        }
+        .graybgcolor{
+            background-color:white;
+        }
+        .txtBlueColor{
+            color:white;
+        }
+        input{
+            -webkit-appearance:none;
+            -moz-appearance: none;
+            width:90px;
+            height:14px;
+            font-size:12px;
+            border-radius:0;
+            border:0 solid #c8cccf;
+            color:black;
+            margin:0;
+            outline:0;
+        }
+        .monthLink{
+            margin-left:10px;margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" src="../../_jquery/jquery-3.2.1.js"></script>
+   
+</head>
+<body>
+    <div style="width:900px;">
+        <span><<</span>
+            <span class="monthLink">[1]</span>
+            <span class="monthLink">[2]</span>
+            <span class="monthLink">[3]</span>
+            <span class="monthLink">[4]</span>
+            <span class="monthLink">[5]</span>
+            <span class="monthLink">[6]</span>
+            <span class="monthLink">[7]</span>
+            <span class="monthLink">[8]</span>
+            <span class="monthLink">[9]</span>
+            <span class="monthLink">[10]</span>
+            <span class="monthLink">[11]</span>
+            <span class="monthLink">[12]</span>
+        <span>>></span>
+    </div>
+    <div style="width:900px;">
+        <p style="text-align:center; font-size:36px;font-weight: bold;">增值税纳税申报表附列资料(三)</p>
+        <p style="text-align:center; font-size:16px;font-weight: bold;">(服务、不动产和无形资产扣除项目明细)</p>
+        <p>税款所属期</p>
+        <p>纳税人名称:(公章)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;金额单位:元至角分</p>
+        <table style="margin:0 0;" id="fb3table">
+            <tbody>
+            <tr class="bluebgcolor">
+                <td  rowspan="3" class="txtCenter" style="width:150px;">项目及栏次</td>
+                <td rowspan="2">本期服务、不动产和无形资产价税合计额(免税销售额)</td>
+                <td colspan="5" class="txtCenter">服务、不动产和无形资产扣除项目</td>
+            </tr>
+            <tr class="bluebgcolor">
+                <td class="txtCenter">期初余额</td>
+                <td class="txtCenter">本期发生额</td>
+                <td class="txtCenter">本期应扣除金额</td>
+                <td class="txtCenter">本期实际扣除金额</td>
+                <td class="txtCenter">期末余额</td>
+            </tr>
+            <tr class="bluebgcolor">
+                <td class="txtCenter">1</td>
+                <td class="txtCenter">2</td>
+                <td class="txtCenter">3</td>
+                <td class="txtCenter">4=2+3</td>
+                <td class="txtCenter">5(5≤1且5≤4)</td>
+                <td class="txtCenter">6=4-5</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">17%税率的项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">11%税率的项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">6%税率的项目(不含金融商品转让)</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">6%税率的金融商品转让项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">5%征收率的项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">3%征收率的项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">免抵退税的项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtLeft">免税的项目</td>
+                <td class="">0.00</td>
+                <td class="beinput">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+                <td class="">0.00</td>
+                <td class="graybgcolor">0.00</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+</html>

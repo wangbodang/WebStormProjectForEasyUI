@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一般纳税人申报表</title>
+    <style type="text/css">
+        body{
+            font-family:"SimSun";
+            font-size:12px;
+        }
+        table{
+            border: 0px solid black;
+            border-collapse:collapse;
+        }
+        table[id=ybnsr]{
+
+        }
+        td{
+            border: 1px solid black;
+            padding :8px;
+            text-align:right;
+            height:13px;
+        }
+        td[class=nostyle]{
+            border:0px;
+            text-align: left;
+        }
+        .bluebgcolor{
+            background-color:rgb(200,216,250);
+        }
+        .graybgcolor{
+            background-color:rgb(192,192,192);
+        }
+        .greenbgcolor{
+            background-color:rgb(206,254,206);
+        }
+        .whitebgcolor{
+            background-color: white;
+        }
+        .txtCenter{
+            text-align:center;
+        }
+        .txtLeft{
+            text-align:left;
+        }
+        .txtRight{
+            text-align: right;
+        }
+        .txtBlueColor{
+            color:blue;
+        }
+        input{
+            -webkit-appearance:none;
+            -moz-appearance: none;
+            width:90px;
+            height:14px;
+            font-size:12px;
+            border-radius:0;
+            border:0 solid #c8cccf;
+            color:black;
+            margin:0;
+            outline:0;
+        }
+
+        /*style='width:98px;height:20px;margin:0px;padding:0px;'*/
+    </style>
+    <script type="text/javascript" src="../../_jquery/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#fb3table').on('dblclick','.beinput',function(){
+                //console.info($(this).text());
+                var oldVal = $(this).text();
+                var input = "<input type='text' id='tmpId' value='" + oldVal + "' >";
+                $(this).text('');
+                $(this).append(input);
+                $('#tmpId').focus();
+                $('#tmpId').blur(function(){
+                    if($(this).val() != ''){
+                        oldVal = $(this).val();
+                    }
+                    //closest：是从当前元素开始，沿Dom树向上遍历直到找到已应用选择器的一个匹配为止。
+                    $(this).closest('td').text(oldVal);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div style="width:900px;">
+    <!--<p style="text-align:center; font-size:36px;font-weight: bold;">增值税纳税申报表（一般纳税人适用）</p>
+    <p style="text-align:center; font-size:16px;font-weight: bold;">(服务、不动产和无形资产扣除项目明细)</p>
+    <p>税款所属期</p>
+    <p>纳税人名称:(公章)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;金额单位:元至角分</p>-->
+    <table style="margin:0 0;" id="ybnsr">
+        <tbody>
+            <tr style="">
+                <td class="nostyle" colspan="7"><p style="text-align:center; font-size:36px;font-weight: bold;">增值税纳税申报表（一般纳税人适用）</p></td>
+
+            </tr>
+            <tr>
+                <td colspan="7"  class="nostyle" >
+                    根据国家税收法律法规及增值税相关规定制定本表。纳税人不论有无销售额，均应按税务机关核定的纳税期限填写本表，并向当地税务机关申报。
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="3"  class="nostyle" >
+                    税款所属期：自2018年01月01日 至 2018年01月31日
+                </td>
+                <td colspan="2"  class="nostyle" >
+                    填表日期：2018年02月05日
+                </td>
+                <td colspan="2" class="nostyle" >
+                    电话号码：13700786608
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="nostyle" >纳税人识别号：91410000170660941L</td>
+                <td colspan="2" class="nostyle" >所属行业：其他专业咨询</td>
+                <td colspan="2" class="nostyle" >法定代表人姓名：黄思亚</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="nostyle" >纳税人名称：河南四建股份有限公司</td>
+                <td colspan="2" class="nostyle" >注册地址：宋门外大街36号</td>
+                <td colspan="2" class="nostyle" >生产经营地址：开封市宋门关大街３６号</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="nostyle" >开户银行：中国工商银行</td>
+                <td colspan="2" class="nostyle" >银行账号：1703020319200013282</td>
+                <td colspan="2" class="nostyle" >登记注册类型：其他有限责任公司</td>
+                <td colspan="1" class="nostyle" >金额单位：元至角分</td>
+            </tr>
+            <tr class="txtCenter">
+                <td class="bluebgcolor txtCenter" colspan="2" rowspan="2">项     目</td>
+                <td class="bluebgcolor txtCenter" rowspan="2">栏次</td>
+                <td class="bluebgcolor txtCenter" colspan="2">一般项目</td>
+                <td class="bluebgcolor txtCenter" colspan="2">即征即退项目</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor txtCenter">本月数</td>
+                <td class="bluebgcolor txtCenter">本年累计</td>
+                <td class="bluebgcolor txtCenter">本月数</td>
+                <td class="bluebgcolor txtCenter">本年累计</td>
+            </tr>
+            <!-- 以下为销售额 -->
+            <tr>
+                <td class="bluebgcolor" width="40px">销售额</td>
+                <td class="bluebgcolor txtLeft"  width="160px">(一)按适用税率计税销售额</td>
+                <td class="bluebgcolor txtLeft" width="80px">1</td>
+                <td class="graybgcolor" width="100px">0.00</td>
+                <td class="greenbgcolor" width="100px">0.00</td>
+                <td class="graybgcolor" width="100px">0.00</td>
+                <td class="greenbgcolor" width="100px">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor" width="50px">销售额</td>
+                <td class="bluebgcolor txtLeft"  width="200px">其中:应税货物销售额</td>
+                <td class="bluebgcolor txtLeft" width="100px">2</td>
+                <td class="whitebgcolor" width="120px">0.00</td>
+                <td class="greenbgcolor" width="120px">0.00</td>
+                <td class="whitebgcolor" width="120px">0.00</td>
+                <td class="greenbgcolor" width="120px">0.00</td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor" width="50px">销售额</td>
+                <td class="bluebgcolor txtLeft"  width="200px">&nbsp;&nbsp;应税劳务销售额</td>
+                <td class="bluebgcolor txtLeft" width="100px">3</td>
+                <td class="whitebgcolor" width="120px">0.00</td>
+                <td class="greenbgcolor" width="120px">0.00</td>
+                <td class="whitebgcolor" width="120px">0.00</td>
+                <td class="greenbgcolor" width="120px">0.00</td>
+            </tr>
+
+            <!-- -->
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+            <tr>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="bluebgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+                <td class="graybgcolor"></td>
+                <td class="greenbgcolor"></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>

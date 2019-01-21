@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Random Demo</title>
+
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+</head>
+<body>
+    <h3>Math Random Demo</h3>
+    <hr/>
+    <div style="border: 1px solid aquamarine; margin:40px auto; width:40%; height: 500px; padding:12px;">
+        <p>
+            <input id="btn_random" class="easyui-textbox" style="width:280px; height:22px;" data-options="buttonText:'RandomBtn',buttonIcon:'icon-search', buttonAlign:'left', iconCls:'icon-search', iconWidth:16, iconAlign:'left', prompt:'random...'"/>
+        </p>
+        <p>
+            <input id="btn_random2" class="easyui-textbox" style="width:280px; height:22px;"/>
+        </p>
+        <p>
+            <input id="btn_random3" class="easyui-textbox" style="width:280px; height:22px;"/>
+        </p>
+        <p>
+            <input id="btn_random4" class="easyui-textbox" style="width:280px; height:22px;"/>
+        </p>
+    </div>
+<script>
+    //第一个按钮的相关事件
+    $(function () {
+        //$("#btn_random").on('click', randomNum);
+        //$("div").on('click', 'a', randomNum);
+        //$("#btn_random").next("span").on('click', randomNum);
+
+        // $("#btn_random").textbox({onClickButton:function(){
+        //         randomNum();
+        // }});
+
+        $("#btn_random").textbox({onClickIcon:function(){
+                randomNum();
+            }});
+
+    })
+    //
+    function randomNum() {
+        console.log("随机数");
+        var rNum = Math.random();
+        $("#btn_random").textbox('setValue', rNum);
+    }
+</script>
+<script>
+    /*
+        $(function () {
+            $("#btn_random2").textbox({
+                iconWidth: 15,
+                iconAlign:'left',
+                icons: [{
+                    iconCls: 'icon-add',
+                    handler: function (e) {
+                        showClient(); return false;
+                    }
+                }]
+
+            });
+        });
+    */
+    $(function () {
+        $("#btn_random2").textbox({
+            iconWidth: 15,
+            iconAlign:'left',
+            icons: [{iconCls: 'icon-add'}]
+        });
+        //此处使用 onClickIcon 不能使用onClickButton
+        $("#btn_random2").textbox({onClickIcon:function(){
+                showClient();
+            }})
+    });
+
+    //
+    function showClient() {
+        console.log('Show Client!!!')
+    }
+</script>
+    <script>
+        /*
+            $(function () {
+                $("#btn_random2").textbox({
+                    iconWidth: 15,
+                    iconAlign:'left',
+                    icons: [{
+                        iconCls: 'icon-add',
+                        handler: function (e) {
+                            showClient(); return false;
+                        }
+                    }]
+
+                });
+            });
+        */
+        $(function () {
+            $("#btn_random3").textbox({
+                iconWidth: 15,
+                iconAlign:'left',
+                icons: [{iconCls: 'icon-add'}]
+            });
+            //此处使用 onClickIcon 不能使用onClickButton
+            $("#btn_random3").textbox({onClickIcon:function(){
+                    showClient();
+                }})
+        });
+
+        //
+        function showClient() {
+            console.log('Show Client!!!')
+        }
+    </script>
+</body>
+</html>
