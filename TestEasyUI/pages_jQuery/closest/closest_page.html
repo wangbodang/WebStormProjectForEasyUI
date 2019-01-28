@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <style>
+        td{
+            padding-left: 10px;
+        }
+        div{
+            border : 1px solid #00ee00;
+            padding: 5px;
+            margin: 5px;
+        }
+        #div1{
+            width:600px;
+            height:400px;
+        }
+        #div21{
+            width:300px;
+            height:150px;
+        }
+        #div22{
+            width:300px;
+            height:150px;
+        }
+        #div31{
+            width:200px;
+            height:100px;
+        }
+        .redBorder{
+            border-color:red;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            //alert(111);
+        })
+    </script>
+</head>
+<body>
+    <h3>Demo Page</h3>
+    <hr/>
+    <div id="div1">
+        <div id="div21">
+            <div id="div31">
+                <a id="clikeBtn" class="easyui-linkbutton" data-options="text:'click me'" onclick="test(event);"></a>
+            </div>
+
+        </div>
+        <div id="div22" class="redBorder">
+
+        </div>
+    </div>
+</body>
+<script>
+    function test(event) {
+        //console.log($("#clikeBtn").linkbutton('options')['text']);
+        console.log($(this));
+    }
+</script>
+</html>
