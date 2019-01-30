@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS DEMO</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <script>
+
+
+    </script>
+
+</head>
+<body>
+    <div style="width: 35%;margin: 100px auto;">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="test()">Click Me</a>
+    </div>
+
+
+<script>
+    //初始化
+    $(function () {
+
+    })
+    //测试框
+    function test() {
+        //$.messager.alert('消息', '测试', 'info');
+        var result = "<html><body><p>WWWWW</p></body></html>";
+        var printWin = window.open("打印窗口", "_blank");
+        printWin.document.write(result);
+        printWin.document.close();
+        printWin.print();
+        printWin.close();
+    }
+</script>
+</body>
+</html>
