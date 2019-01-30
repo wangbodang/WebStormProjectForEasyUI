@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS DEMO</title>
+    <script type="text/javascript" src="../../jquery-easyui/jquery.min.js"></script> <!--这是jQuery文件-->
+    <script type="text/javascript" src="../../jquery-easyui/jquery.easyui.min.js"></script><!--这是jQuery easyUI文件-->
+    <script type="text/javascript" src="../../jquery-easyui/locale/easyui-lang-zh_CN.js"></script><!--这是中文包文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/default/easyui.css"/><!--这是默认主题CSS文件-->
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui/themes/icon.css"/><!--这是图标CSS文件-->
+
+    <script>
+
+
+    </script>
+
+</head>
+<body>
+    <div style="width: 35%;margin: 100px auto;">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="test()">Click Me</a>
+    </div>
+
+
+<script>
+    //初始化
+    $(function () {
+
+    })
+    //测试框
+    function test() {
+        //$.messager.alert('消息', '测试', 'info');
+        alert(dateFormat_2(''));
+    }
+
+    function dateFormat_2(longTypeDate){
+        if(!longTypeDate){
+            return '';
+        }
+        var dateType = "";
+        var date = new Date();
+        date.setTime(longTypeDate);
+        dateType = date.getFullYear()+"-"+getMonth(date)+"-"+getDay(date);//yyyy-MM-dd格式日期
+        return dateType;
+    }
+    //返回 01-12 的月份值
+    function getMonth(date){
+        var month = "";
+        month = date.getMonth() + 1; //getMonth()得到的月份是0-11
+        if(month<10){
+            month = "0" + month;
+        }
+        return month;
+    }
+    //返回01-30的日期
+    function getDay(date){
+        var day = "";
+        day = date.getDate();
+        if(day<10){
+            day = "0" + day;
+        }
+        return day;
+    }
+</script>
+</body>
+</html>
