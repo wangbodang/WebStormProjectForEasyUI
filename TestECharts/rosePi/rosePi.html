@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RosePi</title>
+    <script type="text/javascript" src="../_jquery/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../_echarts/echarts.js"></script>
+
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px; border:1px solid green; float:left;"></div>
+
+    <script>
+        var myChart = echarts.init($("#main")[0], 'dark');
+
+        var option = {
+            title: {
+                text: 'ECharts 入门示例',
+                textStyle:{
+                    color: 'black'
+                }
+            },
+            backgroundColor: '#ffffff',
+            visualMap: {
+                // 不显示 visualMap 组件，只用于明暗度的映射
+                show: false,
+                // 映射的最小值为 80
+                min: 80,
+                // 映射的最大值为 600
+                max: 600,
+                inRange: {
+                    // 明暗度的范围是 0 到 1
+                    colorLightness: [0, 1]
+                }
+            },
+            series : [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    roseType: 'angle',
+                    radius: '66%',
+                    itemStyle: {
+                        // 设置扇形的颜色
+                        //color: '#c23531',
+                        //shadowBlur: 200,
+                        //shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        /*emphasis: {
+                            shadowBlur: 150,
+                            shadowColor: 'rgba(255, 0, 0, 0.5)'
+                        }*/
+                    },
+                    label: {
+                        textStyle: {
+                            color: 'rgba(128, 126, 128, 1)'
+                        },
+                        emphasis: {
+                            textStyle: {
+                                shadowBlur: 150,
+                                shadowColor: 'rgba(0, 0, 255, 1)',
+                                color: 'rgba(0, 255, 255, 1)'
+                            }
+                        },
+
+                    },
+                    labelLine: {
+                        /*shadowBlur: 250,
+                        shadowColor: 'rgba(0, 0, 255, 0.7)',*/
+                        lineStyle: {
+                            color: 'rgba(0, 0, 255, 0.7)'
+                        },
+                        emphasis:{
+                            /*shadowBlur: 250,
+                            shadowColor: 'rgba(0, 255, 0, 0.7)',*/
+                            lineStyle: {
+                                color: 'rgba(0, 255, 255, 0.7)'
+                            }
+                        }
+                    },
+
+                    data:[
+                        {value:90, name:'视频广告'},
+                        {value:174, name:'联盟广告'},
+                        {value:280, name:'邮件营销'},
+                        {value:365, name:'直接访问',itemStyle: {color: '#c23531'}},
+                        {value:280, name:'搜索引擎'}
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
