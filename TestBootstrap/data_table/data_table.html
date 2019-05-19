@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*div{
+            margin:5px 5px 10px 5px;
+            border-bottom:1px solid #b4ffab;
+            padding: 3px;
+
+        }*/
+    </style>
+
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" src="data_table.js"></script>
+
+
+</head>
+<body>
+
+    <div>
+        <table id="myTable" class="table table-hover" style="width: 60%; border:1px solid black;">
+            <thead>
+                <th></th>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>salary</th>
+            </thead>
+        </table>
+    </div>
+
+
+<script>
+    $(function () {
+        $('#myTable').DataTable({
+            language: {
+                "url": "js/assets/plugins/tables/datatables/datatables_language.json"
+            },
+            "processing": true,
+            "searching": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/scuvc/jw/xs/listJson",
+                "data": function (d) {
+                    var info = $('#datatable_xs').DataTable().page.info();
+                    d.pageNo = info.page;
+                    var xh = $('#xsjb_xh').val();
+                    //指定检索参数名称，后台参数名为extraSerach
+                    d.extraSerach=xh;
+                }
+            },
+            "dom": '<l<t>ip>',
+            "columns": [
+                {"data": "xh"},
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "age"},
+                {"data": "salary"}
+            ]
+        });
+        //点击提交按钮重新绘制表格，并将输入框中的值赋予检索框
+        $('#xsjbxx').click(function () {
+            var xh = $('#xsjb_xh').val();
+            var table = $('#datatable_xs').DataTable();
+            table.search(xh).draw();
+        });
+    })
+
+</script>
+</body>
+</html>
