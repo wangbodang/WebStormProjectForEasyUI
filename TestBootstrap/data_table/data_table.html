@@ -12,18 +12,16 @@
         }*/
     </style>
 
-
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery -->
     <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-
-    <script type="text/javascript" src="data_table.js"></script>
-
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -31,26 +29,99 @@
     <div>
         <table id="myTable" class="table table-hover" style="width: 60%; border:1px solid black;">
             <thead>
-                <th></th>
-                <th>id</th>
-                <th>name</th>
-                <th>age</th>
-                <th>salary</th>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>salary</th>
+                </tr>
             </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>11001</td>
+                    <td>wangbodang</td>
+                    <td>34</td>
+                    <td>5545.45</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>11002</td>
+                    <td>xieyingdeng</td>
+                    <td>342</td>
+                    <td>1545.45</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>11003</td>
+                    <td>qiguoyuan</td>
+                    <td>22</td>
+                    <td>1545.45</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>11004</td>
+                    <td>lirugui</td>
+                    <td>21</td>
+                    <td>1545.45</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>11005</td>
+                    <td>shanxiongxin</td>
+                    <td>67</td>
+                    <td>1545.45</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>11006</td>
+                    <td>aangbodang</td>
+                    <td>19</td>
+                    <td>1545.45</td>
+                </tr>
+            </tbody>
         </table>
-    </div>
 
+
+    </div>
+    <p>
+        <button onclick="javascript:getDataInfo();">获取行信息</button>
+    </p>
 
 <script>
+
+    var eventFired = function(type) {
+        console.log("--->事件为 : "+type);
+    }
+
+    var dataTable;
     $(function () {
-        $('#myTable').DataTable({
+        dataTable= $('#myTable').DataTable({
             language: {
                 "url": "js/assets/plugins/tables/datatables/datatables_language.json"
             },
+            //"data":dataSet,
             "processing": true,
             "searching": true,
-            "serverSide": true,
-            "ajax": {
+            "serverSide": false,
+            //"paginate": true,
+            "pagingType":'full_numbers',
+
+            "stateSave": true,
+            //"paging":   true,
+            //"ordering": true,
+            //"info":     true,
+
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)"
+            },
+            /*"ajax": {
                 "url": "/scuvc/jw/xs/listJson",
                 "data": function (d) {
                     var info = $('#datatable_xs').DataTable().page.info();
@@ -59,23 +130,76 @@
                     //指定检索参数名称，后台参数名为extraSerach
                     d.extraSerach=xh;
                 }
-            },
-            "dom": '<l<t>ip>',
+            },*/
+            //"dom": 'lfrti',
+            "dom": '<"toolbar">frtip',
             "columns": [
+                {"data": null},
                 {"data": "xh"},
                 {"data": "id"},
                 {"data": "name"},
                 {"data": "age"},
                 {"data": "salary"}
-            ]
+            ],
+            "createdRow": function ( row, data, index ) {
+                console.log("--->行回调");
+                console.log("--->row:"+JSON.stringify(row));
+                console.log("--->data:"+JSON.stringify(data));
+                console.log("--->index:"+JSON.stringify(index));
+                if(data.name.indexOf('ying')>-1){
+                    console.log("-->data.name : "+data.name);
+                }
+            },
+            "columnDefs": [
+                {
+                    "targets": 1,
+                    "render": function(data, type, row) {
+                        //console.log("---> row:"+JSON.stringify(row));
+                        return data + ' (' + row['age'] + ')';
+                    }
+                },
+                {
+                    "targets":  [3] ,
+                    "visible": false
+                },
+                {
+                    "targets": 4,
+                    "render": function (data, type, row) {
+                        if(data>4000){
+                            return "<span style='color:red;'>"+data+"</span>"
+                        }else{
+                            return data;
+                        }
+                    }
+                }
+            ],
+            "lengthMenu": [[2, 4, 6, -1], [2, 4, 6, "All"]]
         });
-        //点击提交按钮重新绘制表格，并将输入框中的值赋予检索框
-        $('#xsjbxx').click(function () {
-            var xh = $('#xsjb_xh').val();
-            var table = $('#datatable_xs').DataTable();
-            table.search(xh).draw();
-        });
+
+        //$("div.toolbar").html('<b style="color:red">自定义文字、图片等等</b>');
+
+        $('#myTable').on('order.dt',
+            function() {
+                eventFired('排序');
+            }).on('search.dt',
+            function() {
+                eventFired('搜索');
+            }).on('page.dt',
+            function() {
+                eventFired('翻页');
+            });
+
+        $('#myTable tbody').on( 'click', 'tr', function () {
+            $(this).toggleClass('selected');
+        } );
     })
+    
+    function getDataInfo() {
+        var selectRows = dataTable.rows('.selected').data().length +' row(s) selected';
+        console.log("--->选中的行数为 : "+selectRows);
+        console.log("===>选中的行:"+JSON.stringify(dataTable.rows('.selected').data()));
+        console.log("===>选中的行:"+JSON.stringify(dataTable.rows('.selected').data().length));
+    }
 
 </script>
 </body>

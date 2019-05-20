@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .row{
+            margin-bottom: 20px;
+        }
+        .row .row{
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        [class*="col-"]{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: #eee;
+            background-color: rgba(86,61,124,.15);
+            border:1px solid #ddd;
+            border:1px solid rgba(86,61,124,.2);
+        }
+        div{
+            border:1px solid #0b2c89;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    xxxxx
+</div>
+<div class="container">
+    xxxxx
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        不带 title 的面板标题
+    </div>
+    <div class="panel-body">
+        面板内容
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            带有 title 的面板标题
+        </h3>
+    </div>
+    <div class="panel-body">
+        面板内容
+    </div>
+    <div class="panel-footer">面板脚注</div>
+</div>
+
+</body>
+</html>

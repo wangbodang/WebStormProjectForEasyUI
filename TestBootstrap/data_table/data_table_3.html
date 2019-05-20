@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*div{
+            margin:5px 5px 10px 5px;
+            border-bottom:1px solid #b4ffab;
+            padding: 3px;
+
+        }*/
+    </style>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <div>
+        <table id="myTable" class="table table-hover" style="width: 60%; border:1px solid black;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>salary</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <p>
+
+    </p>
+
+<script>
+    var dataSet = [
+        {"id":11901, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11902, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11903, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11904, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11905, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11906, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11907, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11908, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11909, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11910, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11911, "name":"wangbodang", "age":34, "salary":1212.23},
+        {"id":11912, "name":"wangbodang", "age":34, "salary":1212.23}
+    ];
+    var datatable;
+    var rows = 0;
+    $(function () {
+       datatable = $('#myTable').dataTable({
+                                "data":dataSet,
+                                "language": {
+                                    "lengthMenu": "每页 _MENU_ 条记录",
+                                    "zeroRecords": "没有找到记录",
+                                    "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                                    "infoEmpty": "无记录",
+                                    "infoFiltered": "(从 _MAX_ 条记录过滤)"
+                                },
+                                "columns": [
+                                    {
+                                        "data": "id",
+                                        "render": function(data, type, row){
+                                             return data = '<input type="checkbox" name="'+data+'">';
+                                        }
+                                    },
+                                    {
+                                        "data": null,
+                                        "render":function (data, type, row) {
+                                            return "<span>x</span>"+data.length;
+                                        } },
+                                    { "data": "id" },
+                                    { "data": "name" },
+                                    { "data": "age" },
+                                    { "data": "salary" }
+                                ]
+                            });
+
+        //$("div.toolbar").html('<b style="color:red">自定义文字、图片等等</b>');
+
+        /*var eventFired = function(type) {
+            console.log("--->事件为 : "+type);
+        }
+
+        $('#myTable').on('order.dt',
+            function() {
+                eventFired('排序');
+            }).on('search.dt',
+            function() {
+                eventFired('搜索');
+            }).on('page.dt',
+            function() {
+                eventFired('翻页');
+            });
+
+        $('#myTable tbody').on( 'click', 'tr', function () {
+
+        });*/
+        $("#myTable tbody tr").on("click", function() {
+            $(this).toggleClass('selected');
+            var nTrs = datatable.fnGetNodes();//fnGetNodes获取表格所有行，nTrs[i]表示第i行tr对象
+            console.log('表格共有 : '+nTrs.length+" 行")
+            for (var i = 0; i < nTrs.length; i++) {
+                if ($(nTrs[i]).hasClass('selected')) {
+                    console.log('[获取数据]' + JSON.stringify(datatable.fnGetData(nTrs[i])));//fnGetData获取一行的数据
+                }
+            }
+        });
+    })
+
+</script>
+</body>
+</html>
